@@ -8,8 +8,8 @@ const Subscribe: React.FC = () => {
       <div className="subscribe-area">
         <div className="container">
           <div className="subscribe-inner">
-            <span>Want Something Extra?</span>
-            <h2>Sign Up For Our Newsletter</h2>
+            <h2>Collaboration</h2>
+            <span>Join us in shaping the future of STEM education! Enter your email to explore partnership opportunities with ISRC.</span>
 
             <form className="newsletter-form">
               <input
@@ -20,7 +20,7 @@ const Subscribe: React.FC = () => {
                 required 
               />
               <button className="btn btn-primary" type="submit">
-                Subscribe
+                Collaborate
               </button>
             </form>
           </div>

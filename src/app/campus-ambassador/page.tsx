@@ -2,7 +2,7 @@ import Navbar from "@/components/Layouts/Navbar";
 import PageBanner from "@/components/Common/PageBanner";
 import AboutUsContent from "@/components/AboutUsThree/AboutUsContent";
 import WhyUs from "@/components/AboutUsThree/WhyUs";
-import Speakers from "@/components/HomeThree/Speakers";
+import Speakers from "@/components/HomeThree/Speakersall";
 import Cta from "@/components/Common/Cta";
 import Partner from "@/components/Common/Partner";
 import BuyTicket from "@/components/Common/BuyTicket";
@@ -16,21 +16,21 @@ export default function Page() {
       <Navbar />
 
       <PageBanner
-        pageTitle="About Us 3"
-        shortText="Are you ready to attend?"
+        pageTitle="Campus Ambassador"
+        shortText=""
         homePageUrl="/"
         homePageText="Home"
-        activePageText="About Us 3"
+        activePageText="Campus Ambassador"
         bgImg="/images/main-bg3.jpg"
       />
 
-      <AboutUsContent />
+      {/* <AboutUsContent />
 
-      <WhyUs />
+      <WhyUs /> */}
 
       <Speakers />
 
-      <Cta />
+      {/* <Cta />
 
       <FunFact />
 
@@ -38,7 +38,7 @@ export default function Page() {
 
       <BuyTicket />
 
-      <Subscribe />
+      <Subscribe /> */}
 
       <Footer />
     </>

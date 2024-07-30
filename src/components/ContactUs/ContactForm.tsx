@@ -10,7 +10,11 @@ const ContactForm: React.FC = () => {
         <div className="container">
           {/* ContactInfo */}
           <ContactInfo />
+          <br /><br />
+  <center>
 
+  <h1>Contact Us</h1>
+  </center>
           <div className="row h-100 align-items-center contact-form">
             <div className="col-lg-4 col-md-12">
               <div className="leave-your-message">
@@ -25,25 +29,25 @@ const ContactForm: React.FC = () => {
                   <h3>Stay Connected</h3>
                   <ul>
                     <li>
-                      <a href="https://www.facebook.com/" target="_blank">
+                      <a href="https://www.facebook.com/people/ISRC/61551801273199/?mibextid=ZbWKwL" target="_blank">
                         <i className="icofont-facebook"></i>
                         <span>Facebook</span>
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.twitter.com/" target="_blank">
+                      <a href="https://x.com/i/flow/login?redirect_after_login=%2Fisrc_org_in" target="_blank">
                         <i className="icofont-twitter"></i>
                         <span>Twitter</span>
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.instagram.com/" target="_blank">
+                      <a href="https://www.instagram.com/isrc.org.in/" target="_blank">
                         <i className="icofont-instagram"></i>
                         <span>Instagram</span>
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.linkedin.com/" target="_blank">
+                      <a href="https://www.linkedin.com/company/isrc-org-in/" target="_blank">
                         <i className="icofont-linkedin"></i>
                         <span>Linkedin</span>
                       </a>

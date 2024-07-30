@@ -18,22 +18,11 @@ interface SocialLink {
 
 const SpeakersMemberData: SpeakersMember[] = [
   {
-    image: "/images/speakers1.jpg",
-    name: "James Anderson",
-    designation: "Founder & CEO",
+    image: "/img/campus/16.png",
+    name: "Isha Sanjay Sawant",
+    designation: "Ratnagiri",
     socialLinks: [
-      {
-        iconName: "icofont-facebook",
-        url: "https://facebook.com/",
-      },
-      {
-        iconName: "icofont-twitter",
-        url: "https://twitter.com/",
-      },
-      {
-        iconName: "icofont-instagram",
-        url: "https://instagram.com/",
-      },
+     
       {
         iconName: "icofont-linkedin",
         url: "https://linkedin.com/",
@@ -41,22 +30,11 @@ const SpeakersMemberData: SpeakersMember[] = [
     ],
   },
   {
-    image: "/images/speakers2.jpg",
-    name: "Steven Smith",
-    designation: "Lead Designer",
+    image: "/img/campus/9.png",
+    name: "Sachin Chandraprakash",
+    designation: "Thane",
     socialLinks: [
-      {
-        iconName: "icofont-facebook",
-        url: "https://facebook.com/",
-      },
-      {
-        iconName: "icofont-twitter",
-        url: "https://twitter.com/",
-      },
-      {
-        iconName: "icofont-instagram",
-        url: "https://instagram.com/",
-      },
+     
       {
         iconName: "icofont-linkedin",
         url: "https://linkedin.com/",
@@ -64,97 +42,18 @@ const SpeakersMemberData: SpeakersMember[] = [
     ],
   },
   {
-    image: "/images/speakers3.jpg",
-    name: "Lucy Mandana",
-    designation: "Developer Expert",
+    image: "/img/campus/17.png",
+    name: "Anjali Kisan Chavan",
+    designation: "Chiplun",
     socialLinks: [
-      {
-        iconName: "icofont-facebook",
-        url: "https://facebook.com/",
-      },
-      {
-        iconName: "icofont-twitter",
-        url: "https://twitter.com/",
-      },
-      {
-        iconName: "icofont-instagram",
-        url: "https://instagram.com/",
-      },
+      
       {
         iconName: "icofont-linkedin",
         url: "https://linkedin.com/",
       },
     ],
   },
-  {
-    image: "/images/speakers4.jpg",
-    name: "David Warner",
-    designation: "Senio Visual Designer",
-    socialLinks: [
-      {
-        iconName: "icofont-facebook",
-        url: "https://facebook.com/",
-      },
-      {
-        iconName: "icofont-twitter",
-        url: "https://twitter.com/",
-      },
-      {
-        iconName: "icofont-instagram",
-        url: "https://instagram.com/",
-      },
-      {
-        iconName: "icofont-linkedin",
-        url: "https://linkedin.com/",
-      },
-    ],
-  },
-  {
-    image: "/images/speakers5.jpg",
-    name: "Alberta Amelia",
-    designation: "Lead Designer",
-    socialLinks: [
-      {
-        iconName: "icofont-facebook",
-        url: "https://facebook.com/",
-      },
-      {
-        iconName: "icofont-twitter",
-        url: "https://twitter.com/",
-      },
-      {
-        iconName: "icofont-instagram",
-        url: "https://instagram.com/",
-      },
-      {
-        iconName: "icofont-linkedin",
-        url: "https://linkedin.com/",
-      },
-    ],
-  },
-  {
-    image: "/images/speakers6.jpg",
-    name: "Abbie Edie",
-    designation: "Lead Designer",
-    socialLinks: [
-      {
-        iconName: "icofont-facebook",
-        url: "https://facebook.com/",
-      },
-      {
-        iconName: "icofont-twitter",
-        url: "https://twitter.com/",
-      },
-      {
-        iconName: "icofont-instagram",
-        url: "https://instagram.com/",
-      },
-      {
-        iconName: "icofont-linkedin",
-        url: "https://linkedin.com/",
-      },
-    ],
-  },
+  
 ];
 
 const Speakers: React.FC = () => {
@@ -163,12 +62,13 @@ const Speakers: React.FC = () => {
       <div className="speakers-area-two ptb-120">
         <div className="container">
           <div className="section-title">
-            <span>Listen to the Event Speakers</span>
-            <h2>Who&apos;s Speaking</h2>
+         
+            <span>Teamwork Makes the Dream Work</span>
+            <h2>Campus Ambassador</h2>
             <div className="bar"></div>
             <div className="bg-title">Speakers</div>
             <Link href="/speakers" className="btn btn-primary">
-              View More Speakers
+              View More Campus Ambassador
             </Link>
           </div>
 

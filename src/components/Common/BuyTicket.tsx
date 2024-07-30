@@ -18,20 +18,16 @@ const BuyTicket: React.FC = () => {
               <div className="col-lg-6">
                 <div className="section-title">
                   <span>Hurry Up!</span>
-                  <h2>Book Your Seat</h2>
+                  <h2>Register Your self Now</h2>
 
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim.
-                  </p>
+                 
                 </div>
               </div>
 
               <div className="col-lg-6">
                 <div className="buy-ticket-btn">
                   <Link href="#" className="btn btn-primary">
-                    Buy Ticket!
+                    Register!
                   </Link>
                 </div>
               </div>

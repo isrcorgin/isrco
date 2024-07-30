@@ -9,11 +9,11 @@ export default function Page() {
       <Navbar />
 
       <PageBanner
-        pageTitle="Schedule"
-        shortText="Get Your Tickets"
+        pageTitle="EVENT"
+        shortText=""
         homePageUrl="/"
         homePageText="Home"
-        activePageText="Schedule"
+        activePageText="Event"
         bgImg="/images/main-bg1.jpg"
       />
 
