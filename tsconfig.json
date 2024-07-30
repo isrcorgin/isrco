@@ -21,7 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-<<<<<<< HEAD
   "include": [
     "next-env.d.ts",
     "**/*.ts",
@@ -29,8 +28,12 @@
     ".next/types/**/*.ts",
     "src/context/AuthContext.tsx"
   ],
-=======
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/about-us/page.tsx"],
->>>>>>> 105ca263829ae02c04e01b27c50f50aed87b9e1b
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/about-us/page.tsx"
+  ],
   "exclude": ["node_modules"]
 }
