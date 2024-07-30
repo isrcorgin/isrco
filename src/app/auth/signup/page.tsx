@@ -3,20 +3,21 @@ import AuthContext from "@/context/AuthContext";
 import { AuthContextType } from "@/context/AuthContext";
 import Link from "next/link";
 import { FormEvent, useContext, useState } from "react";
-
+import { useRouter } from "next/navigation";
 export default function Page() {
 
   const {register} = useContext(AuthContext) as AuthContextType
 
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
-
+  const router = useRouter()
   const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(email, password)
     await register(email, password)
     setEmail("")
     setPassword("")
+  router.push("/team-register")
   }
   return (
     <>

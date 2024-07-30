@@ -20,7 +20,7 @@ const Subscribe: React.FC = () => {
                 required 
               />
               <button className="btn btn-primary" type="submit">
-                Collaborate
+                Send
               </button>
             </form>
           </div>

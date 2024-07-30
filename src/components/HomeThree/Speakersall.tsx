@@ -213,6 +213,81 @@ const SpeakersMemberData: SpeakersMember[] = [
     ],
   },
   
+  {
+    image: "/img/campus/18.png",
+    name: "Yuvrajsing Bahure",
+    designation: "Maharashtra",
+    socialLinks: [
+     
+      {
+        iconName: "icofont-linkedin",
+        url: "https://linkedin.com/",
+      },
+    ],
+  },
+  {
+    image: "/img/campus/19.png",
+    name: "Snehashish Datta",
+    designation: "NIT Uttarpradesh",
+    socialLinks: [
+      
+      {
+        iconName: "icofont-linkedin",
+        url: "https://linkedin.com/",
+      },
+    ],
+  },
+  {
+    image: "/img/campus/20.png",
+    name: "Sachin Rathod",
+    designation: "Maharashtra",
+    socialLinks: [
+     
+      {
+        iconName: "icofont-linkedin",
+        url: "https://linkedin.com/",
+      },
+    ],
+  },
+  
+  {
+    image: "/img/campus/21.png",
+    name: "Valarmathi",
+    designation: "Tamilnadu",
+    socialLinks: [
+     
+      {
+        iconName: "icofont-linkedin",
+        url: "https://linkedin.com/",
+      },
+    ],
+  },
+  {
+    image: "/img/campus/22.png",
+    name: "Madhuvandhana",
+    designation: "Tamilnadu",
+    socialLinks: [
+      
+      {
+        iconName: "icofont-linkedin",
+        url: "https://linkedin.com/",
+      },
+    ],
+  },
+  {
+    image: "/img/campus/23.png",
+    name: "Shreyansh",
+    designation: "AMITY University , Rajasthan",
+    socialLinks: [
+     
+      {
+        iconName: "icofont-linkedin",
+        url: "https://linkedin.com/",
+      },
+    ],
+  },
+  
+
   
 ];
 
@@ -234,7 +309,7 @@ const Speakers: React.FC = () => {
 
           <div className="row">
             {SpeakersMemberData &&
-              SpeakersMemberData.slice(0, 18).map((value, i) => (
+              SpeakersMemberData.slice(0, 25).map((value, i) => (
                 <div className="col-lg-4 col-sm-6" key={i}>
                   <div className="single-speakers-box">
                     <div className="speakers-image">

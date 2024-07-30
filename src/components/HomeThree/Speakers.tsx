@@ -67,7 +67,7 @@ const Speakers: React.FC = () => {
             <h2>Campus Ambassador</h2>
             <div className="bar"></div>
             <div className="bg-title">Speakers</div>
-            <Link href="/speakers" className="btn btn-primary">
+            <Link href="/campus-ambassador/" className="btn btn-primary">
               View More Campus Ambassador
             </Link>
           </div>

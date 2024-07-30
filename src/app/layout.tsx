@@ -22,8 +22,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Evnia - React Next.js Event Conference & Meetup Template",
-  description: "React Next.js Event Conference & Meetup Template",
+  title: "ISRC",
+  description: "International STEM & Robotic Championship",
 };
 
 export default function RootLayout({
