@@ -6,30 +6,38 @@ const ContactInfo: React.FC = () => {
   return (
     <>
       <div className="row justify-content-center">
-        <div className="col-lg-4 col-md-6">
-          <div className="contact-box">
-            <div className="icon">
-              <i className="icofont-phone"></i>
-            </div>
-
-            <div className="content">
-              <h4>Phone / Fax</h4>
-              <p>(+021) 245522455</p>
-              <p>(+000) 245522455</p>
-            </div>
-          </div>
+        <div>
+         <center>
+           <h1 >Our International Offices</h1>
+           <br />
+           <br />
+          </center>
         </div>
 
         <div className="col-lg-4 col-md-6">
           <div className="contact-box">
             <div className="icon">
-              <i className="icofont-email"></i>
+              <i className="icofont-world"></i>
             </div>
 
             <div className="content">
-              <h4>E-mail</h4>
-              <p>info@evnia.com</p>
-              <p>support@evnia.com</p>
+              <h4>Head Office - Mumbai,India</h4>
+              <p>New White House, Kurla West,Mumbai,Maharashtra <br />
+Number: +91 95944 02916</p>
+<br />
+            </div>
+          </div>
+        </div>
+        <div className="col-lg-4 col-md-6">
+          <div className="contact-box">
+            <div className="icon">
+              <i className="icofont-world"></i>
+            </div>
+
+            <div className="content">
+              <h4>International Office -South Africa</h4>
+              <p>stand no 345 mamadimo Park Hospital Road, Mankweng South Africa. <br />
+Number: +27747725059</p>
             </div>
           </div>
         </div>
@@ -41,11 +49,47 @@ const ContactInfo: React.FC = () => {
             </div>
 
             <div className="content">
-              <h4>Location</h4>
-              <p>2750 Quadra Street Victoria, City, Canada</p>
+              <h4>International Office - Muscat Oman</h4>
+              <p>Behind Mawaleh Souq,Muscat,Sultanate of Oman. <br />
+
+Number: +968 9631 0865</p>
+
+
             </div>
           </div>
         </div>
+    <div> .</div>
+        <div className="col-lg-4 col-md-6">
+          <div className="contact-box">
+            <div className="icon">
+              <i className="icofont-world"></i>
+            </div>
+
+            <div className="content">
+              <h4>International Office - Dubai UAE</h4>
+              <p>IT Centre  Building Behind Raffa police Station ,Dubai. <br />
+Number: +0556964567
+</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-lg-4 col-md-6">
+          <div className="contact-box">
+            <div className="icon">
+              <i className="icofont-world"></i>
+            </div>
+
+            <div className="content">
+              <h4>International Office - Sharjah  UAE</h4>
+              <p>	Al Majaz 2 , Buhaira, Corniche Sharjah , UAE. <br />
+Number: +0505979216</p>
+
+
+            </div>
+          </div>
+        </div>
+
       </div>
     </>
   );

@@ -1,46 +1,4 @@
-/*
-@File: Evnia Template Styles
 
-* This file contains the styling for the actual tepmlate, this
-is the file you need to edit to change the look of the
-tepmlate.
-
-This files table contents are outlined below>>>>>
-
-*******************************************
-*******************************************
-
-** - Default CSS
-** - Preloader CSS
-** - Navbar CSS
-** - Main Banner CSS
-** - About CSS
-** - Why Choose Us CSS
-** - CTA CSS
-** - Speakers CSS
-** - Schedule CSS
-** - FunFacts CSS
-** - Pricing CSS
-** - Partner CSS
-** - Blog CSS
-** - Buy Tickets CSS
-** - Subscribe CSS
-** - Page Title CSS
-** - Login CSS
-** - Signup CSS
-** - 404 Error CSS
-** - FAQ CSS
-** - Coming Soon CSS
-** - Pagination CSS
-** - Blog Details CSS
-** - Sidebar CSS
-** - Contact Us CSS
-** - Footer CSS
-** - Back To Top CSS
-*/
-/*================================================
-Default CSS
-=================================================*/
 body {
   padding: 0;
   margin: 0;
@@ -3920,3 +3878,8 @@ Back To Top CSS
   margin-bottom: 10px;
   line-height: 1.8;
 }/*# sourceMappingURL=style.css.map */
+
+
+
+
+

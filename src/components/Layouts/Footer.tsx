@@ -14,32 +14,33 @@ const Footer: React.FC = () => {
               <div className="single-footer-widget">
                 <h3>Venue Location</h3>
                 <span>
-                  <i className="icofont-calendar"></i> 23-27 January, 2024
+                  <i className="icofont-calendar"></i>January, 2025
                 </span>
 
                 <p className="location">
-                  <i className="icofont-google-map"></i> 241 Yellow Street, San
-                  Francisco, United State
+                  <i className="icofont-google-map"></i> Mumbai, India
                 </p>
 
-                <Link href="/contact-us" className="contact-authority">
-                  <i className="icofont-phone"></i> Contact Our Authority
+                <Link href="#" className="contact-authority">
+                  <i className="icofont-phone"></i> +91 95944 02916
                 </Link>
               </div>
             </div>
 
             <div className="col-lg-6 col-md-6">
               <div className="single-footer-widget">
-                <h3>Social Connection</h3>
+                <h3>About Us</h3>
                 <p>
-                  Don&apos;t miss Link thing! Receive daily news You should
-                  connect social area for Any Proper Updates Anytime.
+                Experience ISRC 2024 in Mumbai this December! Over 4,000 teams from 15 
+                countries will compete in the International STEM and Robotics Championship,
+                 promoting hands-on learning and STEM principles. Celebrate knowledge and 
+                 innovation in this thrilling educational adventure. 🌐✨
                 </p>
 
                 <ul className="social-links">
                   <li>
                     <a
-                      href="https://www.facebook.com/"
+                      href="https://www.facebook.com/people/ISRC/61551801273199/?mibextid=ZbWKwL"
                       className="facebook"
                       target="_blank"
                     >
@@ -48,7 +49,7 @@ const Footer: React.FC = () => {
                   </li>
                   <li>
                     <a
-                      href="https://twitter.com/"
+                      href="https://x.com/i/flow/login?redirect_after_login=%2Fisrc_org_in"
                       className="twitter"
                       target="_blank"
                     >
@@ -57,7 +58,7 @@ const Footer: React.FC = () => {
                   </li>
                   <li>
                     <a
-                      href="https://www.linkedin.com/"
+                      href="https://www.linkedin.com/company/isrc-org-in/"
                       className="linkedin"
                       target="_blank"
                     >
@@ -66,7 +67,7 @@ const Footer: React.FC = () => {
                   </li>
                   <li>
                     <a
-                      href="https://www.instagram.com/"
+                      href="https://www.instagram.com/isrc.org.in/"
                       className="instagram"
                       target="_blank"
                     >
@@ -82,23 +83,21 @@ const Footer: React.FC = () => {
                 <div className="logo">
                   <Link href="/">
                     <Image
-                      src="/images/logo.png"
+                      src="/img/isrc.png"
                       alt="logo"
-                      width={120}
-                      height={38}
+                      width={140}
+                      height={58}
                     />
                   </Link>
                 </div>
 
                 <ul>
                   <li>
-                    <Link href="/blog">Blog</Link>
+                    <Link href="/about-us">About</Link>
                   </li>
+                
                   <li>
-                    <Link href="/contact-us">Contact</Link>
-                  </li>
-                  <li>
-                    <Link href="#">Ticket</Link>
+                    <Link href="/refund">Refund Policy</Link>
                   </li>
                   <li>
                     <Link href="/privacy-policy">Privacy Policy</Link>
@@ -109,13 +108,13 @@ const Footer: React.FC = () => {
                 </ul>
 
                 <p>
-                  © Evnia is Proudly Owned by{" "}
+                  © ISRC All Rights Reserved.{" "}
                   <a
-                    href="https://hibootstrap.com/"
+                    href="https://isrc.org.in"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    HiBootstrap
+                    Edu Momentum LLP
                   </a>
                 </p>
               </div>

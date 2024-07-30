@@ -11,22 +11,23 @@ const AboutUsContent: React.FC = () => {
             <div className="col-lg-6">
               <div className="about-content">
                 <span>Join The Event</span>
-                <h2>
-                  We Create and <b>Turn</b> Into Reality
-                </h2>
+                <h3>
+                Join the <b> Global</b> Innovation Spectacle!
+                </h3>
                 <p>
-                  It has survived not only five centuries, but also the leap
-                  into electronic typesetting, remaining essentially unchanged.
-                </p>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book.
+                Welcome to the World Student Robotics Challenge (ISRC), where brilliance knows no bounds!
+                 Calling all aspiring innovators and robotic enthusiasts to be part of an extraordinary 
+                 international showcase. Engage in the thrill of competition as over 4000 teams from 15 countries 
+                 converge to redefine excellence in robotics and innovation. Whether you're in grades 5-8, 9-12, 
+                 or a freshman in college, WSRC provides a stage for your creativity to shine. Choose your path in 
+                 the Innovation or Robotics category, where minds collide, ideas flourish, and robots come to life. 
+                 Dive into three rounds of challenges, from online quizzes with AI proctoring to hands-on offline 
+                 competitions, culminating in a spectacular finale. Prizes await the champions, but more importantly, 
+                 it's your chance to be part of a global community shaping the future. Don't miss out — register now and 
+                 join us in the adventure of a lifetime!
                 </p>
 
-                <div className="signature">
+                {/* <div className="signature">
                   <Image
                     src="/images/signature.png"
                     alt="signature"
@@ -42,7 +43,7 @@ const AboutUsContent: React.FC = () => {
 
                 <Link href="#" className="btn btn-secondary">
                   Buy Ticket
-                </Link>
+                </Link> */}
               </div>
             </div>
 

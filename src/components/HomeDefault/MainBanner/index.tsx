@@ -13,7 +13,7 @@ const MainBanner: React.FC = () => {
     <>
       <FsLightbox
         toggler={toggler}
-        sources={["https://www.youtube.com/embed/bk7McNUjWgw"]}
+        sources={["https://www.youtube.com/watch?v=O8l2nEs6a20"]}
       />
 
       <div 
@@ -30,28 +30,27 @@ const MainBanner: React.FC = () => {
                   Are you <span>ready</span> to attend?
                 </p>
                 <h1>
-                Conquering <span>Challenges,</span> <br />Together <b>2</b>
+                Conquering Challenges,<span> <br />Together </span> <br />at ISRC in <b>2</b>
                   <b>0</b>
                   <b>2</b>
-                  <b>4</b>
+                  <b>5</b>
                 </h1>
               
 
 
-at ISRC in 2024
+
                 <ul>
                   <li>
-                    <i className="icofont-compass"></i> Yellow Street, United
-                    State
+                    <i className="icofont-compass"></i>Mumbai
                   </li>
                   <li>
-                    <i className="icofont-calendar"></i> 23-27 Jan, 2024
+                    <i className="icofont-calendar"></i> January, 2024
                   </li>
                 </ul>
 
                 <div className="button-box">
                   <Link href="#" className="btn btn-primary">
-                    Buy Tickets Now!
+                    Register Now!
                   </Link>
                   <div
                     onClick={() => setToggler(!toggler)}

@@ -13,7 +13,7 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
     const timeRemaining = endDateTime - now;
 
     if (timeRemaining > 0) {
-      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 560));
       const hours = Math.floor(
         (timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
       );

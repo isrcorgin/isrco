@@ -9,7 +9,7 @@ export default function Page() {
 
       <PageBanner
         pageTitle="Privacy Policy"
-        shortText="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+        shortText=""
         homePageUrl="/"
         homePageText="Home"
         activePageText="Privacy Policy"
@@ -19,28 +19,48 @@ export default function Page() {
       <div className="ptb-120">
         <div className="container">
           <div className="main-textarea">
-            <h4>What is Lorem Ipsum?</h4>
- 
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            <h4>Privacy Policy for ISRC</h4>
+            <p>At ISRC, we prioritize the privacy of our stakeholders and the safeguarding of personal information. Our commitment to this is reflected in our concise privacy policy, governing the collection, utilization, and dissemination of personal data through our official website.</p>
 
-            <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <p>This policy is exclusive to ISRC's domain and doesn't extend to external websites linked from our pages. Given the dynamic nature of internet technology, we may periodically update this policy, with changes promptly reflected on the privacy policy page.</p>
 
-            <h4>Why do we use it?</h4>
+            <p>Transparency is key in privacy matters. We urge you to review this document to understand the terms for providing personal information on our website. By continuing to use the ISRC website, you signify your acceptance of these terms.</p>
 
-            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+            <p>Our policy is crafted to ensure a secure online experience, fostering a trusted environment for STEM and robotics exploration. Your confidence is paramount. Updates to this privacy policy are made with your best interests in mind, maintaining the highest standards of privacy and data security.</p>
 
-            <h4>Where does it come from?</h4>
-            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+            <p>Thank you for entrusting us with your participation in the International STEM and Robotics Championship. We anticipate a shared journey of innovation, learning, and a steadfast commitment to privacy.</p>
 
-            <h4>Where can I get some?</h4>
-            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there is not anything embarrassing hidden in the middle of text.</p>
+            <h4>Information Collection and Use</h4>
+            <p>While some sections of our website can be accessed without personal information, specific areas may require registration with particular details. Information collected by International STEM and Robotics Championship (ISRC) is strictly used for specified purposes outlined at collection and will not be sold, traded, rented, or shared with third parties, including commercial entities.</p>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>ISRC may disclose collected information to its employees, agents, consultants, and others deemed necessary for proper information handling. In certain circumstances, disclosure to third parties, such as law enforcement officials and courts, may occur at the institute's discretion.</p>
 
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+            <p>At ISRC, we are unwavering in our commitment to maintaining the confidentiality and security of your data. Any disclosure is made with due consideration and adherence to applicable laws. We prioritize responsible information handling to ensure your privacy is upheld throughout your interaction with our platform.</p>
 
-            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
- 
+            <p>Thank you for entrusting ISRC with your participation. We anticipate your involvement in an environment that values innovation and diligently protects your personal information.</p>
+
+            <h4>Cookies</h4>
+            <p>At International STEM and Robotics Championship (ISRC), our website utilizes "cookies" to track usage and enhance services. These small data bits, transferred to users' hard drives during logins or specific site access, serve purposes like authentication. Adjusting browser settings can block cookies, though this may limit access to certain site sections. Users retain control and can remove cookies through browser options.</p>
+
+            <p>Crucially, data collected through cookies is anonymous, devoid of personally identifiable information like names or addresses. Our commitment to transparency and user control ensures an optimal online experience.</p>
+
+            <p>Thank you for your trust in ISRC. Your participation in our environment, balancing technological innovation and user privacy, is sincerely appreciated.</p>
+
+            <h4>Data Security</h4>
+            <p>At International STEM and Robotics Championship (ISRC), we prioritize the utmost precautions to secure your data. While stringent measures enhance security, it's important to note our limited control over the internet's digital transmission medium. Therefore, any information transferred to us is at your own risk.</p>
+
+            <p>Upon receiving your data, we are committed to its security, employing cutting-edge technology, regularly upgrading our digital infrastructure, and implementing restricted access protocols. All information is stored on ISRC's secured servers.</p>
+
+            <p>Despite our efforts, unforeseen circumstances may impact data security. While we can't provide absolute guarantees, rest assured we are dedicated to ongoing efforts and adapting to the latest advancements in digital security.</p>
+
+            <p>Thank you for entrusting ISRC with your data. Your understanding of the technology-security balance is appreciated.</p>
+
+            <h4>Online Forums and Information Use</h4>
+            <p>The ISRC website features online forums where providing personal information is necessary for services like registrations, payments, and surveys. By submitting the form, you consent to ISRC storing and using the information for specified purposes.</p>
+
+            <p>Your participation not only enriches engagement but also signifies agreement to responsible information use. We value your trust and are committed to handling your data with the utmost care and in line with our privacy policies.</p>
+
+            <p>Thank you for your involvement in the International STEM and Robotics Championship. We appreciate your understanding and cooperation in maintaining a secure and seamless experience for all participants.</p>
           </div>
         </div>
       </div>

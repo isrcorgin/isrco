@@ -9,7 +9,7 @@ export default function Page() {
 
       <PageBanner
         pageTitle="Terms & Conditions"
-        shortText="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+        shortText="Please review our terms and conditions for participation in ISRC."
         homePageUrl="/"
         homePageText="Home"
         activePageText="Terms & Conditions"
@@ -19,28 +19,45 @@ export default function Page() {
       <div className="ptb-120">
         <div className="container">
           <div className="main-textarea">
-            <h4>What is Lorem Ipsum?</h4>
- 
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            
 
-            <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <h5>1. Acceptance of Terms</h5>
+            <p>By participating in the International STEM & Robotic Championship (ISRC), you agree to comply with and be bound by these Terms and Conditions. If you do not agree with any part of these terms, you should not participate in the ISRC.</p>
 
-            <h4>Why do we use it?</h4>
+            <h5>2. Eligibility</h5>
+            <p>Participation in the ISRC is open to students, teams, and individuals who meet the eligibility criteria outlined on our website. We reserve the right to disqualify any participant who does not meet these criteria.</p>
 
-            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+            <h5>3. Registration</h5>
+            <p>Participants must complete the registration process as described on our website. All information provided must be accurate and complete. The ISRC reserves the right to reject any registration that is incomplete or incorrect.</p>
 
-            <h4>Where does it come from?</h4>
-            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+            <h5>4. Code of Conduct</h5>
+            <p>Participants are expected to conduct themselves in a professional and respectful manner. Any behavior that disrupts the event, violates the rules, or is deemed inappropriate by the ISRC will result in disqualification.</p>
 
-            <h4>Where can I get some?</h4>
-            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there is not anything embarrassing hidden in the middle of text.</p>
+            <h5>5. Intellectual Property</h5>
+            <p>All materials, including but not limited to content, logos, and images provided by ISRC, are the property of ISRC or its licensors. Participants may not use these materials without prior written consent.</p>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <h5>6. Use of Data</h5>
+            <p>By participating in the ISRC, you consent to the collection and use of your data for purposes related to the event, including but not limited to marketing, promotional activities, and administrative purposes.</p>
 
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+            <h5>7. Prizes and Awards</h5>
+            <p>Details of prizes and awards will be provided as part of the competition rules. The ISRC reserves the right to modify or cancel prizes if necessary.</p>
 
-            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
- 
+            <h5>8. Liability</h5>
+            <p>ISRC is not liable for any damages or losses incurred by participants as a result of their participation in the event. Participants agree to indemnify and hold ISRC harmless from any claims arising from their participation.</p>
+
+            <h5>9. Changes to Terms</h5>
+            <p>ISRC reserves the right to modify these Terms and Conditions at any time. Participants will be notified of any changes through our website or other communication channels.</p>
+
+            <h5>10. Governing Law</h5>
+            <p>These Terms and Conditions are governed by and construed in accordance with the laws of [Your Country/Region]. Any disputes arising from these terms will be subject to the exclusive jurisdiction of the courts in [Your Country/Region].</p>
+
+            <h5>11. Contact Information</h5>
+            <p>For any questions or concerns regarding these Terms and Conditions, please contact us at:</p>
+            <p>
+              International STEM & Robotic Championship<br />
+              Email: director@isrc.org.in<br />
+              Phone: +91 95944 02916
+            </p>
           </div>
         </div>
       </div>

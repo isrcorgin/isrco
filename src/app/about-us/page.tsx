@@ -9,11 +9,11 @@ export default function Page() {
       <Navbar />
 
       <PageBanner
-        pageTitle="Contact Us"
-        shortText="Send me your Message"
+        pageTitle="About Us"
+        shortText=""
         homePageUrl="/"
         homePageText="Home"
-        activePageText="Contact Us"
+        activePageText="About Us"
         bgImg="/images/main-bg4.jpg"
       />
 

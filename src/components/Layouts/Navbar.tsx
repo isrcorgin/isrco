@@ -37,10 +37,10 @@ const Navbar: React.FC = () => {
           <div className="container">
             <Link href="/" className="navbar-brand">
               <Image
-                src="/images/logo.png"
+                src="/img/isrc.png"
                 alt="logo"
-                width={120}
-                height={38}
+                width={170}
+                height={58}
               />
             </Link>
 
@@ -71,7 +71,7 @@ const Navbar: React.FC = () => {
                 <ul>
                   <li>
                     <Link href="/pricing" className="btn btn-primary">
-                      Buy Ticket
+                      REGISTER
                     </Link>
                   </li>
                 </ul>

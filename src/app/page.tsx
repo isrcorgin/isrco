@@ -2,6 +2,7 @@ import Navbar from "@/components/Layouts/Navbar";
 import MainBanner from "@/components/HomeDefault/MainBanner";
 import AboutUsContent from "@/components/HomeDefault/AboutUsContent";
 import WhyUs from "@/components/Common/WhyUs";
+import Speakers1 from "@/components/HomeThree/Speakers";
 import Speakers from "@/components/HomeDefault/Speakers";
 import EventSchedules from "@/components/HomeDefault/EventSchedules";
 import FunFact from "@/components/Common/FunFact";
@@ -21,19 +22,19 @@ export default function Home() {
 
       <AboutUsContent />
 
-      <WhyUs />
+      {/* <WhyUs /> */}
+     
+      <Speakers1 />
 
-      <Speakers />
+      {/* <EventSchedules /> */}
 
-      <EventSchedules />
+      {/* <FunFact />
 
-      <FunFact />
-
-      <Pricing />
+      <Pricing /> */}
 
       <Partner />
 
-      <LatestNews />
+      {/* <LatestNews /> */}
 
       <BuyTicket />
 
