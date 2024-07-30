@@ -56,7 +56,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUid(data.user.uid);
       localStorage.setItem("token", JSON.stringify(data.idToken));
       localStorage.setItem("uid", JSON.stringify(data.user.uid));
-      console.log("Login Successfully");
     } catch (error) {
       console.error(
         "Login error:"
@@ -76,8 +75,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUid(data.user.uid);
       localStorage.setItem("token", JSON.stringify(data.idToken));
       localStorage.setItem("uid", JSON.stringify(data.user.uid));
-      console.log("Registration Successfully");
-      router.push("/dashboard"); // Redirect after registration
     } catch (error) {
       console.error(
         "Registration error:"

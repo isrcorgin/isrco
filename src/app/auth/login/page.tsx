@@ -13,7 +13,6 @@ export default function Page() {
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(email,password)
     await login(email, password)
     setEmail("")
     setPassword("")
