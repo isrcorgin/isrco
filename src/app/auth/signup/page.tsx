@@ -1,6 +1,23 @@
+"use client"
+import AuthContext from "@/context/AuthContext";
+import { AuthContextType } from "@/context/AuthContext";
 import Link from "next/link";
+import { FormEvent, useContext, useState } from "react";
 
 export default function Page() {
+
+  const {register} = useContext(AuthContext) as AuthContextType
+
+  const [email, setEmail] = useState<string>("")
+  const [password, setPassword] = useState<string>("")
+
+  const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log(email, password)
+    await register(email, password)
+    setEmail("")
+    setPassword("")
+  }
   return (
     <>
       <div
@@ -14,22 +31,15 @@ export default function Page() {
             <div className="signup-form">
               <h3>Create your Account</h3>
 
-              <form>
-                <div className="form-group">
-                  <label>Username</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Username"
-                  />
-                </div>
-
+              <form onSubmit={handleRegister}>
                 <div className="form-group">
                   <label>Email</label>
                   <input
                     type="email"
                     className="form-control"
                     placeholder="Email Address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
 
@@ -39,10 +49,12 @@ export default function Page() {
                     type="password"
                     className="form-control"
                     placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
 
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-primary" >
                   Signup
                 </button>
 
