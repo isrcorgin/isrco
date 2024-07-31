@@ -12,11 +12,11 @@ const Partner: React.FC = () => {
           <div className="section-title">
             <span>Check Who Makes This Event Possible!</span>
             <h2>
-              Our Event <b>Sponsors</b>
+              Our Event <b>Partner</b>
             </h2>
 
             <a href="#" className="btn btn-primary">
-              Become a Sponsor
+              Become a Partner
             </a>
 
             <div className="bar"></div>

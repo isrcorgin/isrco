@@ -3,11 +3,21 @@
 import React, { useState } from "react";
 
 const TeamRegistrationForm: React.FC = () => {
-  const [teamMembers, setTeamMembers] = useState([{ name: "", age: "", email: "", phone: "", isCaptain: false }]);
+  const [teamMembers, setTeamMembers] = useState([
+    { name: "", age: "", email: "", phone: "", isCaptain: false },
+    { name: "", age: "", email: "", phone: "", isCaptain: false }
+  ]);
 
   const addTeamMember = () => {
     if (teamMembers.length < 5) {
       setTeamMembers([...teamMembers, { name: "", age: "", email: "", phone: "", isCaptain: false }]);
+    }
+  };
+
+  const removeTeamMember = (index: number) => {
+    if (teamMembers.length > 2) {
+      const updatedMembers = teamMembers.filter((_, i) => i !== index);
+      setTeamMembers(updatedMembers);
     }
   };
 
@@ -158,11 +168,18 @@ const TeamRegistrationForm: React.FC = () => {
                           </label>
                         </div>
                       </div>
+                      {teamMembers.length > 2 && (
+                        <div className="col-lg-12 col-md-12">
+                          <button type="button" className="btn btn-danger mt-2" onClick={() => removeTeamMember(index)}>
+                            Remove Member
+                          </button>
+                        </div>
+                      )}
                     </div>
                   ))}
 
                   {teamMembers.length < 5 && (
-                    <div className="col-lg-12 col-md-12 mt-3">
+                    <div className="d-flex justify-content-center mt-3">
                       <button type="button" className="btn btn-secondary" onClick={addTeamMember}>
                         Add Team Member
                       </button>
@@ -178,7 +195,7 @@ const TeamRegistrationForm: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="col-lg-12 col-md-12 mt-3">
+                  <div className="d-flex justify-content-center mt-3">
                     <button type="submit" className="btn btn-primary">
                       Register
                     </button>

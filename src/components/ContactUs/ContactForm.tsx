@@ -1,9 +1,32 @@
 "use client";
 
-import React from "react";
+import React, { FormEvent } from "react";
 import ContactInfo from "./ContactInfo";
 
 const ContactForm: React.FC = () => {
+  // Handle form submission
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); // Prevent default form submission
+
+    // Get form data
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const number = formData.get("number") as string;
+    const message = formData.get("message") as string;
+
+    // Construct the WhatsApp URL
+    const phoneNumber = "9594402916";
+    const textMessage = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nPhone Number: ${number}\nMessage: ${message}`
+    );
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${textMessage}`;
+
+    // Redirect to WhatsApp
+    window.location.href = whatsappURL;
+  };
+
   return (
     <>
       <div className="contact-area ptb-120">
@@ -11,10 +34,9 @@ const ContactForm: React.FC = () => {
           {/* ContactInfo */}
           <ContactInfo />
           <br /><br />
-  <center>
-
-  <h1>Contact Us</h1>
-  </center>
+          <center>
+            <h1>Contact Us</h1>
+          </center>
           <div className="row h-100 align-items-center contact-form">
             <div className="col-lg-4 col-md-12">
               <div className="leave-your-message">
@@ -58,7 +80,7 @@ const ContactForm: React.FC = () => {
             </div>
 
             <div className="col-lg-8 col-md-12">
-              <form id="contactForm">
+              <form id="contactForm" onSubmit={handleSubmit}>
                 <div className="row">
                   <div className="col-lg-6 col-md-6">
                     <div className="form-group">
@@ -115,7 +137,7 @@ const ContactForm: React.FC = () => {
 
                   <div className="col-lg-12 col-md-12">
                     <button type="submit" className="btn btn-primary">
-                      Send Message
+                      Send Whatsapp Message
                     </button>
                   </div>
                 </div>

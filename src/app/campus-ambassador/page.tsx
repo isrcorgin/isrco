@@ -1,7 +1,6 @@
 import Navbar from "@/components/Layouts/Navbar";
 import PageBanner from "@/components/Common/PageBanner";
-import AboutUsContent from "@/components/AboutUsThree/AboutUsContent";
-import WhyUs from "@/components/AboutUsThree/WhyUs";
+
 import Speakers from "@/components/HomeThree/Speakersall";
 import Cta from "@/components/Common/Cta";
 import Partner from "@/components/Common/Partner";

@@ -44,12 +44,12 @@ const MainBanner: React.FC = () => {
                     <i className="icofont-compass"></i>Mumbai
                   </li>
                   <li>
-                    <i className="icofont-calendar"></i> January, 2024
+                    <i className="icofont-calendar"></i> January, 2025
                   </li>
                 </ul>
 
                 <div className="button-box">
-                  <Link href="#" className="btn btn-primary">
+                  <Link href="/team-register/" className="btn btn-primary">
                     Register Now!
                   </Link>
                   <div

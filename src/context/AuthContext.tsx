@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await axios.post("http://localhost:5000/login", {
+      const response = await axios.post("https://isrc-backend.onrender.com/login", {
         email,
         password,
       });
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const register = async (email: string, password: string) => {
     try {
-      const response = await axios.post("http://localhost:5000/register", {
+      const response = await axios.post("https://isrc-backend.onrender.com/register", {
         email,
         password,
       });

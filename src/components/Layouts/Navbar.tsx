@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
               <div className="others-option">
                 <ul>
                   <li>
-                    <Link href="/pricing" className="btn btn-primary">
+                    <Link href="/team-register" className="btn btn-primary">
                       REGISTER
                     </Link>
                   </li>

@@ -1,6 +1,6 @@
 import Navbar from "@/components/Layouts/Navbar";
 import PageBanner from "@/components/Common/PageBanner";
-import PricingTable from "@/components/Registration/registration";
+import Register from "@/components/Registration/registration";
 import Footer from "@/components/Layouts/Footer";
 
 export default function Page() {
@@ -9,15 +9,15 @@ export default function Page() {
       <Navbar />
 
       <PageBanner 
-        pageTitle="Pricing"
-        shortText="Get Your Tickets"
+        pageTitle="Register Your Team"
+        shortText=""
         homePageUrl="/"
         homePageText="Home"
-        activePageText="Pricing"
+        activePageText="Register your Team"
         bgImg="/images/main-bg4.jpg"
       />
 
-      <PricingTable />
+      <Register />
  
       <Footer />
     </>

@@ -26,7 +26,7 @@ const BuyTicket: React.FC = () => {
 
               <div className="col-lg-6">
                 <div className="buy-ticket-btn">
-                  <Link href="#" className="btn btn-primary">
+                  <Link href="/team-register/" className="btn btn-primary">
                     Register!
                   </Link>
                 </div>

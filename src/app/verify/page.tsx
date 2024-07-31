@@ -9,11 +9,11 @@ export default function Page() {
       <Navbar />
 
       <PageBanner
-        pageTitle="Sponsors"
-        shortText="Check Who Makes This Event Possible!"
+        pageTitle="Verify Certificate"
+        shortText=""
         homePageUrl="/"
         homePageText="Home"
-        activePageText="Sponsors"
+        activePageText="Verify Certificate"
         bgImg="/images/main-bg2.jpg"
       />
 

@@ -1,4 +1,6 @@
 
+/* styles/globals.css */
+
 body {
   padding: 0;
   margin: 0;
@@ -1813,6 +1815,7 @@ Schedule CSS
   border-bottom: 1px solid #eeeeee;
   padding: 20px;
   text-align: left;
+ 
 }
 .schedule-slides-item .single-schedule .schedule-content .author {
   max-width: 100px;
@@ -3883,3 +3886,142 @@ Back To Top CSS
 
 
 
+.event-info {
+  background-color: #f8f9fa; /* Light background color for contrast */
+  padding: 60px 0;
+}
+
+.event-info h1 {
+  font-size: 2.5rem;
+  color: #0E1B4D; /* Dark blue for headers */
+  margin-bottom: 20px;
+}
+
+.event-info .lead {
+  font-size: 1.25rem;
+  color: #6c757d; /* Gray color for the lead text */
+}
+
+.event-info .mission-card,
+.event-info .highlights-card,
+.event-info .impact-card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-info h3 {
+  font-size: 1.75rem;
+  color: #0E1B4D; /* Dark blue for section headers */
+  margin-bottom: 15px;
+}
+
+.event-info p {
+  font-size: 1rem;
+  color: #343a40; /* Dark gray for regular text */
+}
+
+.event-info .text-center {
+  margin-top: 30px;
+}
+
+.impact-card, .mission-card, .highlights-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  transform: perspective(1000px);
+  background-color: #ffffff; /* Default background color */
+  color: #333333; /* Default text color */
+  padding: 20px; /* Ensure padding is added */
+  border-radius: 8px; /* Rounded corners */
+  text-align: center; /* Center text */
+}
+
+/* Hover effect */
+.impact-card:hover, .mission-card:hover, .highlights-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  /* background-color: #FF2D55;  */
+  color: white; /* White text color on hover */
+}
+
+.event-images{
+  margin-right: 20px;
+}
+
+
+
+
+
+/* event  topic list  */
+/* styles/style.css */
+.tableContainer {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+  color: #ffffff;
+  background-color: #FF2D55;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table th, .table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease, font-size 0.3s ease;
+}
+
+.table th {
+  background-color: #333333;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.table td:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+.table td {
+  font-size: 14px;
+}
+
+.table tr:hover td {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333333;
+}
+
+.tableContainer table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #333333;
+  color: #ffffff;
+  z-index: 1;
+}

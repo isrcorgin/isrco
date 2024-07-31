@@ -29,16 +29,16 @@ const EventSchedulesThree: React.FC = () => {
               <div className="single-schedule-item">
                 <div className="schedule-date">
                   5th to 8th
-                  <span>Age Group 1</span>
+                  <span>Primary</span>
                 </div>
 
                 <div className="schedule-item-wrapper">
                   <div className="schedule-content">
-                    <div className="author">
+                    <div className="event-images">
                       <Image
                         src="/img/topic/boat.jpg"
                         alt="Schedules"
-                        width={300}
+                        width={600}
                         height={300}
                         style={{ borderRadius: "10px" }}
                       />
@@ -59,11 +59,11 @@ const EventSchedulesThree: React.FC = () => {
 
                   <div className="schedule-item-wrapper">
                     <div className="schedule-content">
-                      <div className="author">
+                      <div className="event-images">
                         <Image
-                          src="/img/topic/boat.jpg"
+                          src="/img/topic/path2.jpg"
                           alt="Schedules"
-                          width={300}
+                          width={600}
                           height={300}
                           style={{ borderRadius: "10px" }}
                         />
@@ -76,7 +76,7 @@ const EventSchedulesThree: React.FC = () => {
 
                         <ul>
                           <li>
-                            In the <Link href="#">Path</Link> Following competition, participants design robots that follow a predefined path. The challenge lies in accurately following the path using sensors and algorithms, testing the robot's precision and control.
+                          Young participants create simple robots to move along a designated <Link href="#">path</Link> using basic light or touch sensors. This fun activity introduces children to robotics basics. It helps develop their problem-solving skills.
                           </li>
                         </ul>
                       </div>
@@ -90,16 +90,16 @@ const EventSchedulesThree: React.FC = () => {
               <div className="single-schedule-item">
                 <div className="schedule-date">
                   9th to 12th
-                  <span>Age Group 2</span>
+                  <span>Secondary</span>
                 </div>
 
                 <div className="schedule-item-wrapper">
                   <div className="schedule-content">
-                    <div className="author">
+                    <div className="event-images">
                       <Image
-                        src="/img/topic/boat.jpg"
+                        src="/img/topic/maze.png"
                         alt="Schedules"
-                        width={300}
+                        width={600}
                         height={300}
                         style={{ borderRadius: "10px" }}
                       />
@@ -120,11 +120,11 @@ const EventSchedulesThree: React.FC = () => {
 
                   <div className="schedule-item-wrapper">
                     <div className="schedule-content">
-                      <div className="author">
+                      <div className="event-images">
                         <Image
-                          src="/img/topic/boat.jpg"
+                          src="/img/topic/path2.webp"
                           alt="Schedules"
-                          width={300}
+                          width={600}
                           height={300}
                           style={{ borderRadius: "10px" }}
                         />
@@ -137,7 +137,7 @@ const EventSchedulesThree: React.FC = () => {
 
                         <ul>
                           <li>
-                            In the <Link href="#">Path</Link> Following competition, participants design robots that follow a predefined path. The challenge lies in accurately following the path using sensors and algorithms, testing the robot's precision and control.
+                          Participants build <Link href="#">Robots</Link> to navigate a specific route using advanced sensors like infrared or ultrasonic. They fine-tune their robots for higher accuracy with more complex programming. This challenge enhances their understanding of robotics principles.
                           </li>
                         </ul>
                       </div>
@@ -151,17 +151,17 @@ const EventSchedulesThree: React.FC = () => {
               <div className="single-schedule-item">
                 <div className="schedule-date">
                   1st Year on ward
-                  <span>Age Group 3</span>
+                  <span>Higher Secondary</span>
                 </div>
 
                 <div className="schedule-item-wrapper">
                   <div className="schedule-content">
-                    <div className="author">
+                    <div className="event-images">
                       <Image
-                        src="/img/topic/boat.jpg"
+                        src="/img/topic/line.jpg"
                         alt="Schedules"
-                        width={300}
-                        height={300}
+                        width={600}
+                        height={400}
                         style={{ borderRadius: "10px" }}
                       />
                     </div>
@@ -180,11 +180,11 @@ const EventSchedulesThree: React.FC = () => {
                   </div>
                   <div className="schedule-item-wrapper">
                     <div className="schedule-content">
-                      <div className="author">
+                      <div className="event-images">
                         <Image
-                          src="/img/topic/boat.jpg"
+                          src="/img/topic/drone.webp"
                           alt="Schedules"
-                          width={300}
+                          width={600}
                           height={300}
                           style={{ borderRadius: "10px" }}
                         />
@@ -204,11 +204,11 @@ const EventSchedulesThree: React.FC = () => {
                     </div>
                     <div className="schedule-item-wrapper">
                       <div className="schedule-content">
-                        <div className="author">
+                        <div className="event-images">
                           <Image
-                            src="/img/topic/boat.jpg"
+                            src="/img/topic/path3.avif"
                             alt="Schedules"
-                            width={300}
+                            width={600}
                             height={300}
                             style={{ borderRadius: "10px" }}
                           />
@@ -221,7 +221,7 @@ const EventSchedulesThree: React.FC = () => {
 
                           <ul>
                             <li>
-                              In the <Link href="#">Path Following</Link> competition, participants design robots that follow a predefined path. The challenge lies in accurately following the path using sensors and algorithms, testing the robot's precision and control.
+                            Participants engineer sophisticated robots to follow intricate <Link href="#">path</Link> using cutting-edge sensors like LIDAR and advanced algorithms like PID control. This competition allows them to apply theoretical knowledge in practical scenarios. It pushes the boundaries of their technical skills.
                             </li>
                           </ul>
                         </div>

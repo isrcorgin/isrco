@@ -2,7 +2,7 @@ import Navbar from "@/components/Layouts/Navbar";
 import PageBanner from "@/components/Common/PageBanner";
 import Footer from "@/components/Layouts/Footer";
 import EventSchedulesThree from "@/components/Schedule/EventSchedulesThree";
-
+import EventList from "@/components/Eventlist/eventlist"
 export default function Page() {
   return (
     <>
@@ -18,7 +18,7 @@ export default function Page() {
       />
 
       <EventSchedulesThree />
-
+<EventList/>
       <Footer />
     </>
   );
