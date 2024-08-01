@@ -56,7 +56,7 @@ const MainBanner: React.FC = () => {
                     onClick={() => setToggler(!toggler)}
                     className="video-btn d-sm-inline"
                   >
-                    <i className="icofont-ui-play"></i> Watch Pormo Video
+                    <i className="icofont-ui-play"></i> Watch Promo Video
                   </div>
                 </div>
               </div>

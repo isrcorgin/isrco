@@ -1,12 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const TeamRegistrationForm: React.FC = () => {
   const [teamMembers, setTeamMembers] = useState([
     { name: "", age: "", email: "", phone: "", isCaptain: false },
     { name: "", age: "", email: "", phone: "", isCaptain: false }
   ]);
+  const [totalPrice, setTotalPrice] = useState(2400); // Initialize with minimum price for 2 members
+
+  useEffect(() => {
+    setTotalPrice(teamMembers.length * 1200);
+  }, [teamMembers]);
 
   const addTeamMember = () => {
     if (teamMembers.length < 5) {
@@ -196,8 +201,8 @@ const TeamRegistrationForm: React.FC = () => {
                   </div>
 
                   <div className="d-flex justify-content-center mt-3">
-                    <button type="submit" className="btn btn-primary">
-                      Register
+                    <button type="submit" className="btn btn-primary" style={{ backgroundColor: "#FF2D55" }}>
+                      Register and Pay ₹{totalPrice}
                     </button>
                   </div>
                 </form>
