@@ -47,19 +47,19 @@ const TeamRegistrationForm: React.FC = () => {
                   <div className="row">
                     <div className="col-lg-6 col-md-6">
                       <div className="form-group">
-                        <label htmlFor="teamName">Team Name*</label>
+                        <label htmlFor="teamName">Team Name <span className="text-danger">*</span></label>
                         <input type="text" className="form-control" id="teamName" placeholder="Enter team name" required />
                       </div>
                     </div>
                     <div className="col-lg-6 col-md-6">
                       <div className="form-group">
-                        <label htmlFor="country">Country*</label>
+                        <label htmlFor="country">Country <span className="text-danger">*</span></label>
                         <input type="text" className="form-control" id="country" placeholder="Enter country" required />
                       </div>
                     </div>
                     <div className="col-lg-12 col-md-12">
                       <div className="form-group">
-                        <label htmlFor="competitionTopic">Select Competition Topic*</label>
+                        <label htmlFor="competitionTopic">Select Competition Topic <span className="text-danger">*</span></label>
                         <select className="form-control" id="competitionTopic" required>
                           <option value="">Select your topic</option>
                           {/* Add competition topics here */}
@@ -74,25 +74,25 @@ const TeamRegistrationForm: React.FC = () => {
                   <div className="row">
                     <div className="col-lg-6 col-md-6">
                       <div className="form-group">
-                        <label htmlFor="mentorName">Name*</label>
+                        <label htmlFor="mentorName">Name <span className="text-danger">*</span></label>
                         <input type="text" className="form-control" id="mentorName" placeholder="Enter mentor name" required />
                       </div>
                     </div>
                     <div className="col-lg-6 col-md-6">
                       <div className="form-group">
-                        <label htmlFor="mentorAge">Age*</label>
+                        <label htmlFor="mentorAge">Age <span className="text-danger">*</span></label>
                         <input type="number" className="form-control" id="mentorAge" placeholder="Enter mentor age" required />
                       </div>
                     </div>
                     <div className="col-lg-6 col-md-6">
                       <div className="form-group">
-                        <label htmlFor="mentorEmail">Email*</label>
+                        <label htmlFor="mentorEmail">Email <span className="text-danger">*</span></label>
                         <input type="email" className="form-control" id="mentorEmail" placeholder="Enter mentor email" required />
                       </div>
                     </div>
                     <div className="col-lg-6 col-md-6">
                       <div className="form-group">
-                        <label htmlFor="mentorPhone">Phone Number*</label>
+                        <label htmlFor="mentorPhone">Phone Number <span className="text-danger">*</span></label>
                         <input type="text" className="form-control" id="mentorPhone" placeholder="Enter mentor phone number" required />
                       </div>
                     </div>
@@ -105,7 +105,7 @@ const TeamRegistrationForm: React.FC = () => {
                     <div className="row" key={index}>
                       <div className="col-lg-6 col-md-6">
                         <div className="form-group">
-                          <label htmlFor={`member${index}Name`}>Member {index + 1} Name*</label>
+                          <label htmlFor={`member${index}Name`}>Member {index + 1} Name <span className="text-danger">*</span></label>
                           <input
                             type="text"
                             className="form-control"
@@ -119,7 +119,7 @@ const TeamRegistrationForm: React.FC = () => {
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="form-group">
-                          <label htmlFor={`member${index}Age`}>Member {index + 1} Age*</label>
+                          <label htmlFor={`member${index}Age`}>Member {index + 1} Age <span className="text-danger">*</span></label>
                           <input
                             type="number"
                             className="form-control"
@@ -133,7 +133,7 @@ const TeamRegistrationForm: React.FC = () => {
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="form-group">
-                          <label htmlFor={`member${index}Email`}>Member {index + 1} Email*</label>
+                          <label htmlFor={`member${index}Email`}>Member {index + 1} Email <span className="text-danger">*</span></label>
                           <input
                             type="email"
                             className="form-control"
@@ -147,7 +147,7 @@ const TeamRegistrationForm: React.FC = () => {
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="form-group">
-                          <label htmlFor={`member${index}Phone`}>Member {index + 1} Phone Number*</label>
+                          <label htmlFor={`member${index}Phone`}>Member {index + 1} Phone Number <span className="text-danger">*</span></label>
                           <input
                             type="text"
                             className="form-control"

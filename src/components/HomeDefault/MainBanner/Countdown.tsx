@@ -46,7 +46,7 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
 
   return (
     <>
-      <div className="event-countdown countdown1">
+      <div className="event-countdown countdown1"  >
         <div id="timer">
           <div id="days">
             {countdown.days} <span>Days</span>

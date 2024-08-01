@@ -63,10 +63,12 @@ const MainBanner: React.FC = () => {
             </div>
           </div>
         </div>
-
         {/* Countdown */}
-        <Countdown endDate="August 15, 2024 17:00:00 GMT" />
+      
 
+
+
+        <Countdown endDate="August 15, 2024 17:00:00 GMT"  />
         {/* Shape Images */}
         <div className="shape1">
           <Image
