@@ -84,7 +84,7 @@ const ContactForm: React.FC = () => {
                 <div className="row">
                   <div className="col-lg-6 col-md-6">
                     <div className="form-group">
-                      <label htmlFor="name">Name*</label>
+                      <label htmlFor="name">Name <span className="text-danger">*</span></label>
                       <input
                         type="text"
                         className="form-control"
@@ -97,7 +97,7 @@ const ContactForm: React.FC = () => {
 
                   <div className="col-lg-6 col-md-6">
                     <div className="form-group">
-                      <label htmlFor="email">Email*</label>
+                      <label htmlFor="email">Email <span className="text-danger">*</span></label>
                       <input
                         type="email"
                         className="form-control"
@@ -110,7 +110,7 @@ const ContactForm: React.FC = () => {
 
                   <div className="col-lg-12 col-md-12">
                     <div className="form-group">
-                      <label htmlFor="number">Phone Number*</label>
+                      <label htmlFor="number">Phone Number <span className="text-danger">*</span></label>
                       <input
                         type="text"
                         className="form-control"
@@ -123,7 +123,7 @@ const ContactForm: React.FC = () => {
 
                   <div className="col-lg-12 col-md-12">
                     <div className="form-group">
-                      <label htmlFor="message">Message*</label>
+                      <label htmlFor="message">Message <span className="text-danger">*</span></label>
                       <textarea
                         name="message"
                         className="form-control"

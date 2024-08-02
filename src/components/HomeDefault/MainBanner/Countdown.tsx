@@ -8,12 +8,12 @@ interface CountdownProps {
 
 const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
   const calculateTimeLeft = () => {
-    const endDateTime = new Date("August 23, 2025 17:00:00 PDT").getTime();
+    const endDateTime = new Date(endDate).getTime();
     const now = new Date().getTime();
     const timeRemaining = endDateTime - now;
 
     if (timeRemaining > 0) {
-      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 560));
+      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
       const hours = Math.floor(
         (timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
       );
@@ -36,6 +36,7 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
   });
 
   useEffect(() => {
+    calculateTimeLeft();
     const interval = setInterval(() => {
       calculateTimeLeft();
     }, 1000);
@@ -45,7 +46,7 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
 
   return (
     <>
-      <div className="event-countdown countdown1">
+      <div className="event-countdown countdown1"  >
         <div id="timer">
           <div id="days">
             {countdown.days} <span>Days</span>

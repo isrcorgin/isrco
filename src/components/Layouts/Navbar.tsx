@@ -33,14 +33,14 @@ const Navbar: React.FC = () => {
   return (
     <>
       <div id="navbar" className="elkevent-nav">
-        <nav className="navbar navbar-expand-lg navbar-light">
+        <nav className="navbar navbar-expand-lg navbar-light" style={{maxHeight: "90px"}}>
           <div className="container">
             <Link href="/" className="navbar-brand">
               <Image
                 src="/img/isrc.png"
                 alt="logo"
-                width={170}
-                height={58}
+                width={140}
+                height={38}
               />
             </Link>
 

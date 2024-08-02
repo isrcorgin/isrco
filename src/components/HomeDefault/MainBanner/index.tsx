@@ -56,17 +56,19 @@ const MainBanner: React.FC = () => {
                     onClick={() => setToggler(!toggler)}
                     className="video-btn d-sm-inline"
                   >
-                    <i className="icofont-ui-play"></i> Watch Pormo Video
+                    <i className="icofont-ui-play"></i> Watch Promo Video
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
         {/* Countdown */}
-        <Countdown endDate="" />
+      
 
+
+
+        <Countdown endDate="August 15, 2024 17:00:00 GMT"  />
         {/* Shape Images */}
         <div className="shape1">
           <Image
