@@ -1,7 +1,8 @@
-"use client"
+"use client";
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import AuthContext, { AuthContextType } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 const TeamRegistrationForm: React.FC = () => {
   const [token, setToken] = useState<string | null>(null);
@@ -10,7 +11,8 @@ const TeamRegistrationForm: React.FC = () => {
     { name: "", age: "", email: "", phone: "", isCaptain: false }
   ]);
   const [totalPrice, setTotalPrice] = useState(2400); // Initialize with minimum price for 2 members
-  const {  setTeamRegister } = useContext(AuthContext) as AuthContextType;
+  const router = useRouter();
+  const { setTeamRegister } = useContext(AuthContext) as AuthContextType;
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
@@ -84,8 +86,8 @@ const TeamRegistrationForm: React.FC = () => {
     }));
 
     try {
-      const response = await axios.post(
-        'https://isrc-backend.onrender.com/register-team',
+      await axios.post(
+        'http://localhost:5000/register-team',
         { formDetails, teamMembers },
         {
           headers: {
@@ -93,13 +95,13 @@ const TeamRegistrationForm: React.FC = () => {
           },
         }
       );
-
-      window.location.reload()
-        // if (response.data.registered) {
-        //   localStorage.setItem("registered", JSON.stringify(response.data.registered));
-        //   setTeamRegister(true); // Update context state
-        //   alert('Registration successful!');
-        // }
+      
+      // You can optionally use setTeamRegister if it has some side effects
+      if (setTeamRegister) {
+        setTeamRegister(true); // Call if required
+      }
+      
+      router.push("/payment");
       
     } catch (error) {
       console.error('Error during registration or payment:', error);
