@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
+    "typeRoots": ["./types", "./node_modules/@types"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -26,14 +27,16 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/context/AuthContext.tsx"
-, "src/components/ProfileView.tsx"  ],
+    "src/context/AuthContext.tsx",
+    "src/components/ProfileView.tsx"
+  ],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/about-us/page.tsx",
-    "src/components/ProfileView.tsx"  ],
+    "src/components/ProfileView.tsx"
+  ],
   "exclude": ["node_modules"]
 }

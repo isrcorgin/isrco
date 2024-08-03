@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         // Get the token from local storage
         const tokenString = localStorage.getItem("token");
         if (!tokenString) {
-          router.push("/auth/login")
+          router.push("/")
         }
 
         // Parse the token if it is a JSON string
@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
         const data = response.data;
 
-        if (response.data.user.team) {
+        if (data.user.teamRegistered) {
           localStorage.setItem("registered", JSON.stringify(true));
           setTeamRegister(true); // Update context state
         }
