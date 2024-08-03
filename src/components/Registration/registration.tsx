@@ -10,7 +10,7 @@ const TeamRegistrationForm: React.FC = () => {
     { name: "", age: "", email: "", phone: "", isCaptain: false },
     { name: "", age: "", email: "", phone: "", isCaptain: false }
   ]);
-  const [totalPrice, setTotalPrice] = useState(2400); // Initialize with minimum price for 2 members
+  const {teamTotalPrice, setTeamTotalPrice} = useContext(AuthContext) as AuthContextType // Initialize with minimum price for 2 members
   const router = useRouter();
   const { setTeamRegister } = useContext(AuthContext) as AuthContextType;
 
@@ -20,7 +20,7 @@ const TeamRegistrationForm: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setTotalPrice(members.length * 1200);
+    setTeamTotalPrice(members.length * 1200);
   }, [members]);
 
   useEffect(() => {
@@ -351,7 +351,7 @@ const TeamRegistrationForm: React.FC = () => {
 
                   <div className="d-flex justify-content-center mt-3">
                     <button type="submit" className="btn btn-primary" style={{ backgroundColor: "#FF2D55" }}>
-                      Register and Pay ₹{totalPrice}
+                      Register and Pay ₹{teamTotalPrice}
                     </button>
                   </div>
                 </form>

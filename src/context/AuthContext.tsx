@@ -12,6 +12,8 @@ export type AuthContextType = {
   logout: () => void;
   teamRegister: boolean;
   setTeamRegister: (value: boolean) => void;
+  teamTotalPrice: number;
+  setTeamTotalPrice: (value: number) => void;
 };
 
 // Create context with a default value of null
@@ -20,6 +22,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [token, setToken] = useState<string | null>(null);
   const [teamRegister, setTeamRegister] = useState<boolean>(false); // Initialize as boolean
+  const [teamTotalPrice, setTeamTotalPrice] = useState(2400);
   const router = useRouter();
 
   useEffect(() => {
@@ -111,7 +114,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, register, teamRegister, setTeamRegister, logout }}>
+    <AuthContext.Provider value={{ token, login, register, teamRegister, setTeamRegister, teamTotalPrice, setTeamTotalPrice, logout }}>
       {children}
     </AuthContext.Provider>
   );
