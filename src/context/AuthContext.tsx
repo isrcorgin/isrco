@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         // Get the token from local storage
         const tokenString = localStorage.getItem("token");
         if (!tokenString) {
-          router.push("/auth/login")
+          // router.push("/auth/login")
         }
 
         // Parse the token if it is a JSON string
