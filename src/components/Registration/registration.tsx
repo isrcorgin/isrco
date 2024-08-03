@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import AuthContext, { AuthContextType } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const TeamRegistrationForm: React.FC = () => {
   const [token, setToken] = useState<string | null>(null);
@@ -10,9 +11,14 @@ const TeamRegistrationForm: React.FC = () => {
     { name: "", age: "", email: "", phone: "", isCaptain: false },
     { name: "", age: "", email: "", phone: "", isCaptain: false }
   ]);
-  const {teamTotalPrice, setTeamTotalPrice} = useContext(AuthContext) as AuthContextType // Initialize with minimum price for 2 members
+  const { teamTotalPrice, setTeamTotalPrice, teamRegister, setTeamRegister } = useContext(AuthContext) as AuthContextType;
   const router = useRouter();
-  const { setTeamRegister } = useContext(AuthContext) as AuthContextType;
+
+  useEffect(() => {
+    if (teamRegister) {
+      router.push('/');
+    }
+  }, [teamRegister]);
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
@@ -56,6 +62,15 @@ const TeamRegistrationForm: React.FC = () => {
     setMembers(updatedMembers);
   };
 
+  const handleCaptainChange = (index: number) => {
+    setMembers(prevMembers =>
+      prevMembers.map((member, i) => ({
+        ...member,
+        isCaptain: i === index // Only the selected member will be the captain
+      }))
+    );
+  };
+
   const handleRegistration = async (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -87,7 +102,7 @@ const TeamRegistrationForm: React.FC = () => {
 
     try {
       await axios.post(
-        'http://localhost:5000/register-team',
+        'https://isrc-backend.onrender.com/register-team',
         { formDetails, teamMembers },
         {
           headers: {
@@ -96,10 +111,6 @@ const TeamRegistrationForm: React.FC = () => {
         }
       );
       
-      // You can optionally use setTeamRegister if it has some side effects
-      if (setTeamRegister) {
-        setTeamRegister(true); // Call if required
-      }
       
       router.push("/payment");
       
@@ -116,6 +127,13 @@ const TeamRegistrationForm: React.FC = () => {
           <div className="col-lg-12 col-md-12">
             <div className="card shadow p-3 mb-5 bg-white rounded">
               <div className="card-body">
+                {/* Display login message if user is not authenticated */}
+                {!token && (
+                  <div className="alert alert-warning text-center" role="alert">
+                    You need to <Link href="/auth/login" className="alert-link">Sign in</Link> to register your team.
+                  </div>
+                )}
+
                 <form id="teamRegistrationForm" onSubmit={handleRegistration}>
                   <h3 className="card-title text-center" style={{ backgroundColor: "#FF2D55", color: "#fff", padding: "15px", borderRadius: "5px" }}>
                     General Information
@@ -304,12 +322,12 @@ const TeamRegistrationForm: React.FC = () => {
                       <div className="col-lg-12 col-md-12">
                         <div className="form-check">
                           <input
-                            type="checkbox"
+                            type="radio"
                             className="form-check-input"
                             id={`captain${index}`}
-                            name={`captain${index}`}
+                            name="captain" // Ensure all radio buttons have the same name
                             checked={member.isCaptain}
-                            onChange={(e) => handleInputChange(index, "isCaptain", e.target.checked)}
+                            onChange={() => handleCaptainChange(index)}
                           />
                           <label className="form-check-label" htmlFor={`captain${index}`}>
                             Captain

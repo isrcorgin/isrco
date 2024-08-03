@@ -34,6 +34,7 @@ interface TeamData {
 
 const ProfilePage: React.FC = () => {
   const [teamData, setTeamData] = useState<TeamData | null>(null);
+  const [UID, setUID] = useState<string | null>("")
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter()
@@ -45,6 +46,7 @@ const ProfilePage: React.FC = () => {
         const tokenString = localStorage.getItem("token");
         if (!tokenString) {
           router.push("/auth/login")
+          return;
         }
 
         // Parse the token if it is a JSON string
@@ -65,6 +67,7 @@ const ProfilePage: React.FC = () => {
         }
 
         setTeamData(data.user.team);
+        setUID(data.user.uid)
       } catch (error) {
         setError('Failed to fetch data');
       } finally {
@@ -92,7 +95,7 @@ const ProfilePage: React.FC = () => {
       />
 
       <div className="container mt-5">
-        {teamData ? <ProfileView team={teamData} /> : <div>No team data available</div>}
+        {teamData ? <ProfileView team={teamData} uid={UID} /> : <div>No team data available</div>}
       </div>
       <br /><br />
       <Footer />

@@ -41,6 +41,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const tokenString = localStorage.getItem("token");
         if (!tokenString) {
           router.push("/")
+          return;
         }
 
         // Parse the token if it is a JSON string
@@ -80,7 +81,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       });
       const data = response.data;
       setToken(data.token);
-      localStorage.setItem("token", JSON.stringify(data.token));
+      localStorage.setItem("token", JSON.stringify(data.token))
       router.push("/"); // Redirect to home or dashboard on successful login
     } catch (error) {
       console.error("Login error:", error);

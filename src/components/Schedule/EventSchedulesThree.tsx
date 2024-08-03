@@ -17,7 +17,7 @@ const EventSchedulesThree: React.FC = () => {
 
             <div className="bg-title">Events</div>
 
-            <Link href="/pricing/" className="btn btn-primary">
+            <Link href="/team-register/" className="btn btn-primary">
               Register Now!
             </Link>
 

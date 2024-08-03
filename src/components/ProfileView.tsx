@@ -3,13 +3,15 @@
 import React, { useState } from 'react';
 import { Modal, Button, Card } from 'react-bootstrap';
 import { useRouter } from 'next/navigation';
+import QRCodeGenerator from './QRCode';
+
 
 interface Member {
   name: string;
   age: string;
   email: string;
-  phoneNumber: string;
-  captain: boolean;
+  phone: string;
+  isCaptain: boolean;
 }
 
 interface Mentor {
@@ -29,9 +31,10 @@ interface TeamData {
 
 interface ProfileViewProps {
   team: TeamData;
+  uid: string;
 }
 
-const ProfileView: React.FC<ProfileViewProps> = ({ team }) => {
+const ProfileView: React.FC<ProfileViewProps> = ({ team, uid }) => {
  
   const [showModal, setShowModal] = useState(false);
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
@@ -112,10 +115,10 @@ const ProfileView: React.FC<ProfileViewProps> = ({ team }) => {
                       src="/img/isrc.png" // Update with the path to your logo
                       style={{ height: '150px', objectFit: 'contain', marginBottom: '10px' }}
                     />
+                    {member.isCaptain ?  <Card.Text className='text-center'  style={{color:"black" , fontSize:"large"}}><strong>Captain</strong></Card.Text> : <Card.Text style={{opacity: "0"}}>caption</Card.Text>}
                     <Card.Title>{member.name}</Card.Title>
                     <Card.Text><strong>Age:</strong> {member.age}</Card.Text>
                     <Card.Text><strong>Email:</strong> {member.email}</Card.Text>
-                    <Card.Text><strong>Captain:</strong> {member.captain ? 'Yes' : 'No'}</Card.Text>
                   </Card.Body>
                 </Card>
               </div>
@@ -123,12 +126,9 @@ const ProfileView: React.FC<ProfileViewProps> = ({ team }) => {
           </div>
 
           <h3 className="mb-4 text-center" style={{ color: '#0D1028' }}>Team QR</h3>
-          <div className="text-center mb-4">
-            <img
-              src="/img/qr.png" // Update with the path to your dummy image
-              alt="Team Information"
-              style={{ width: '150px', maxWidth: '100%', borderRadius: '10px', border: '1px solid #ddd' }}
-            />
+          <div className="text-center mb-4" >
+            
+            <QRCodeGenerator uid={uid}/>
           </div>
 
           {/* Logout Button */}
@@ -151,11 +151,12 @@ const ProfileView: React.FC<ProfileViewProps> = ({ team }) => {
               src="/img/isrc.png" // Update with the path to your logo
               style={{ height: '150px', objectFit: 'contain', marginBottom: '20px' }}
             />
+            {selectedMember.isCaptain ?  <p className='text-center' style={{fontSize: "large"}}><strong>Captain</strong></p> :  <p style={{opacity: "0"}}><strong>Captain</strong></p>}
             <p><strong>Name:</strong> {selectedMember.name}</p>
             <p><strong>Age:</strong> {selectedMember.age}</p>
             <p><strong>Email:</strong> {selectedMember.email}</p>
             <p><strong>Phone Number:</strong> {selectedMember.phone}</p>
-            <p><strong>Captain:</strong> {selectedMember.captain ? 'Yes' : 'No'}</p>
+          
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleCloseModal}>
