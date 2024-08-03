@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
                 <div className="logo">
                   <Link href="/">
                     <Image
-                      src="/img/isrc.png"
+                      src="/img/isrc-b.png"
                       alt="logo"
                       width={140}
                       height={58}

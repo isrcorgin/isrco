@@ -4,27 +4,36 @@ import { AuthContextType } from "@/context/AuthContext";
 import Link from "next/link";
 import { FormEvent, useContext, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Modal } from "react-bootstrap";
+
 export default function Page() {
+  const { register } = useContext(AuthContext) as AuthContextType;
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const router = useRouter();
 
-  const {register} = useContext(AuthContext) as AuthContextType
-
-  const [email, setEmail] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
-  const router = useRouter()
   const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log(email, password)
-    await register(email, password)
-    setEmail("")
-    setPassword("")
-  router.push("/team-register")
-  }
+    e.preventDefault();
+    try {
+      console.log(email, password);
+      await register(email, password);
+      setEmail("");
+      setPassword("");
+      router.push("/team-register");
+    } catch (error) {
+      if (error.message === "Email already exists") {
+        setShowModal(true);
+      }
+    }
+  };
+
   return (
     <>
       <div
         className="signup-area"
         style={{
-          backgroundImage: `url(/images/main-bg2.jpg)`,
+          backgroundImage: "url(/images/main-bg2.jpg)",
         }}
       >
         <div className="d-table">
@@ -55,7 +64,7 @@ export default function Page() {
                   />
                 </div>
 
-                <button type="submit" className="btn btn-primary" >
+                <button type="submit" className="btn btn-primary">
                   Signup
                 </button>
 
@@ -67,6 +76,25 @@ export default function Page() {
           </div>
         </div>
       </div>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Email Already Exists</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          The email address you entered is already associated with an account.
+          Please use a different email or login with your existing account.
+        </Modal.Body>
+        <Modal.Footer>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => setShowModal(false)}
+          >
+            Close
+          </button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
