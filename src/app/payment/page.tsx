@@ -1,7 +1,8 @@
 "use client";
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import Head from 'next/head';
+import AuthContext, { AuthContextType } from '@/context/AuthContext';
 
 const initializeRazorpay = () => {
   return new Promise((resolve) => {
@@ -15,7 +16,7 @@ const initializeRazorpay = () => {
 
 const PaymentPage: React.FC = () => {
   const [orderId, setOrderId] = useState<string | null>(null);
-  const [amount, setAmount] = useState<number>(1);
+  const {teamTotalPrice} = useContext(AuthContext) as AuthContextType;
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [razorpayLoaded, setRazorpayLoaded] = useState<boolean>(false);
 
@@ -50,7 +51,7 @@ const PaymentPage: React.FC = () => {
       const parsedToken = JSON.parse(token) as string;
 
       // Request payment details from your server
-      const { data: order } = await axios.post('https://isrc-backend.onrender.com/api/payment', { amount });
+      const { data: order } = await axios.post('https://isrc-backend.onrender.com/api/payment', { teamTotalPrice });
 
       // Log the order data for debugging
       console.log('Order data:', order.data);
@@ -125,9 +126,8 @@ const PaymentPage: React.FC = () => {
             Amount (INR):
             <input
               type="number"
-              value={amount}
-              onChange={(e) => setAmount(Number(e.target.value))}
-              min="1"
+              value={teamTotalPrice}
+              readOnly
             />
           </label>
         </div>
