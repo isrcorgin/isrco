@@ -4,44 +4,69 @@ import { createContext, useState, useEffect, ReactNode } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-// Define a specific type for the user object based on your application's needs
-type User = {
-  uid: string;
-  email?: string; // Optional property, adjust based on actual user object
-  name?: string; // Optional property, adjust based on actual user object
-  [key: string]: any; // Additional properties if needed
-};
-
+// Define the type for the Auth context
 export type AuthContextType = {
-  user: User | null;
   token: string | null;
-  uid: string | null;
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string) => Promise<void>;
   logout: () => void;
+  teamRegister: boolean;
+  setTeamRegister: (value: boolean) => void;
 };
 
 // Create context with a default value of null
-const AuthContext = createContext<AuthContextType | null>(null);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
-  const [uid, setUid] = useState<string | null>(null);
+  const [teamRegister, setTeamRegister] = useState<boolean>(false); // Initialize as boolean
   const router = useRouter();
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
-    const storedUid = localStorage.getItem("uid");
-    if (storedToken && storedUid) {
+    if (storedToken) {
       setToken(JSON.parse(storedToken));
-      setUid(JSON.parse(storedUid));
-      // Optionally fetch user details from backend using the token if needed
-      // fetchUserDetails(storedToken);
     } else {
       setToken(null);
-      setUid(null);
     }
+  }, []);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Get the token from local storage
+        const tokenString = localStorage.getItem("token");
+        if (!tokenString) {
+          router.push("/auth/login")
+        }
+
+        // Parse the token if it is a JSON string
+        const token = JSON.parse(tokenString);
+
+        // Make the API request with the token in the headers
+        const response = await axios.get('https://isrc-backend.onrender.com/user-profile', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const data = response.data;
+
+        if (response.data.user.team) {
+          localStorage.setItem("registered", JSON.stringify(true));
+          setTeamRegister(true); // Update context state
+        }
+        else{
+          localStorage.setItem("registered", JSON.stringify(false));
+          setTeamRegister(false)
+        }
+      
+
+      } catch (error) {
+        console.error(error);
+    };
+  }
+    fetchData();
   }, []);
 
   const login = async (email: string, password: string) => {
@@ -51,15 +76,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         password,
       });
       const data = response.data;
-      setUser(data.user);
-      setToken(data.idToken);
-      setUid(data.user.uid);
-      localStorage.setItem("token", JSON.stringify(data.idToken));
-      localStorage.setItem("uid", JSON.stringify(data.user.uid));
+      setToken(data.token);
+      localStorage.setItem("token", JSON.stringify(data.token));
+      router.push("/"); // Redirect to home or dashboard on successful login
     } catch (error) {
-      console.error(
-        "Login error:"
-      );
+      console.error("Login error:", error);
+      // Optionally handle error
     }
   };
 
@@ -70,29 +92,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         password,
       });
       const data = response.data;
-      setUser(data.user);
-      setToken(data.idToken);
-      setUid(data.user.uid);
-      localStorage.setItem("token", JSON.stringify(data.idToken));
-      localStorage.setItem("uid", JSON.stringify(data.user.uid));
+      console.log(data);
+      setToken(data.token);
+      localStorage.setItem("token", JSON.stringify(data.token));
+      localStorage.setItem("registered", JSON.stringify(true)); // Store registration status
+      router.push("/"); // Redirect to home or dashboard on successful registration
     } catch (error) {
-      console.error(
-        "Registration error:"
-      );
+      console.error("Registration error:", error);
+      // Optionally handle error
     }
   };
 
   const logout = () => {
-    setUser(null);
     setToken(null);
-    setUid(null);
     localStorage.removeItem("token");
-    localStorage.removeItem("uid");
+    localStorage.removeItem("registered"); // Clear registration status
     router.push("/login"); // Redirect to login
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, uid, login, register, logout }}>
+    <AuthContext.Provider value={{ token, login, register, teamRegister, setTeamRegister, logout }}>
       {children}
     </AuthContext.Provider>
   );

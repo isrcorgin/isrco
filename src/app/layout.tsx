@@ -16,6 +16,7 @@ import GoTop from "@/components/Layouts/GoTop";
 import { AuthProvider } from "@/context/AuthContext"; // Import the AuthProvider
 import { SpeakersProvider } from "@/context/CampusAmbassadorContext";
 
+
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+
       <body className={poppins.className}>
         <AuthProvider> {/* Wrap your application with AuthProvider */}
           <SpeakersProvider>

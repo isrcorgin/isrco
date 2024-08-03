@@ -1,36 +1,110 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
+"use client"
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import AuthContext, { AuthContextType } from "@/context/AuthContext";
 
 const TeamRegistrationForm: React.FC = () => {
-  const [teamMembers, setTeamMembers] = useState([
+  const [token, setToken] = useState<string | null>(null);
+  const [members, setMembers] = useState([
     { name: "", age: "", email: "", phone: "", isCaptain: false },
     { name: "", age: "", email: "", phone: "", isCaptain: false }
   ]);
   const [totalPrice, setTotalPrice] = useState(2400); // Initialize with minimum price for 2 members
+  const {  setTeamRegister } = useContext(AuthContext) as AuthContextType;
 
   useEffect(() => {
-    setTotalPrice(teamMembers.length * 1200);
-  }, [teamMembers]);
+    const storedToken = localStorage.getItem('token');
+    setToken(storedToken ? JSON.parse(storedToken) : null);
+  }, []);
+
+  useEffect(() => {
+    setTotalPrice(members.length * 1200);
+  }, [members]);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const storedToken = localStorage.getItem('token');
+      setToken(storedToken ? JSON.parse(storedToken) : null);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
 
   const addTeamMember = () => {
-    if (teamMembers.length < 5) {
-      setTeamMembers([...teamMembers, { name: "", age: "", email: "", phone: "", isCaptain: false }]);
+    if (members.length < 5) {
+      setMembers([...members, { name: "", age: "", email: "", phone: "", isCaptain: false }]);
     }
   };
 
   const removeTeamMember = (index: number) => {
-    if (teamMembers.length > 2) {
-      const updatedMembers = teamMembers.filter((_, i) => i !== index);
-      setTeamMembers(updatedMembers);
+    if (members.length > 2) {
+      const updatedMembers = members.filter((_, i) => i !== index);
+      setMembers(updatedMembers);
     }
   };
 
   const handleInputChange = (index: number, field: string, value: string | boolean) => {
-    const updatedMembers = teamMembers.map((member, i) => (
+    const updatedMembers = members.map((member, i) =>
       i === index ? { ...member, [field]: value } : member
-    ));
-    setTeamMembers(updatedMembers);
+    );
+    setMembers(updatedMembers);
+  };
+
+  const handleRegistration = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    if (!token) {
+      alert('User not authenticated. Please log in.');
+      return;
+    }
+
+    const form = event.currentTarget as HTMLFormElement;
+    const formData = new FormData(form);
+
+    const formDetails = {
+      teamName: formData.get('teamName')?.toString() || '',
+      country: formData.get('country')?.toString() || '',
+      competitionTopic: formData.get('competitionTopic')?.toString() || '',
+      mentorName: formData.get('mentorName')?.toString() || '',
+      mentorAge: formData.get('mentorAge')?.toString() || '',
+      mentorEmail: formData.get('mentorEmail')?.toString() || '',
+      mentorPhone: formData.get('mentorPhone')?.toString() || '',
+    };
+
+    const teamMembers = members.map(member => ({
+      name: member.name,
+      age: member.age,
+      email: member.email,
+      phone: member.phone,
+      isCaptain: member.isCaptain,
+    }));
+
+    try {
+      const response = await axios.post(
+        'https://isrc-backend.onrender.com/register-team',
+        { formDetails, teamMembers },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      window.location.reload()
+        // if (response.data.registered) {
+        //   localStorage.setItem("registered", JSON.stringify(response.data.registered));
+        //   setTeamRegister(true); // Update context state
+        //   alert('Registration successful!');
+        // }
+      
+    } catch (error) {
+      console.error('Error during registration or payment:', error);
+      alert('An error occurred during registration or payment. Please try again.');
+    }
   };
 
   return (
@@ -40,7 +114,7 @@ const TeamRegistrationForm: React.FC = () => {
           <div className="col-lg-12 col-md-12">
             <div className="card shadow p-3 mb-5 bg-white rounded">
               <div className="card-body">
-                <form id="teamRegistrationForm">
+                <form id="teamRegistrationForm" onSubmit={handleRegistration}>
                   <h3 className="card-title text-center" style={{ backgroundColor: "#FF2D55", color: "#fff", padding: "15px", borderRadius: "5px" }}>
                     General Information
                   </h3>
@@ -48,21 +122,55 @@ const TeamRegistrationForm: React.FC = () => {
                     <div className="col-lg-6 col-md-6">
                       <div className="form-group">
                         <label htmlFor="teamName">Team Name <span className="text-danger">*</span></label>
-                        <input type="text" className="form-control" id="teamName" placeholder="Enter team name" required />
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="teamName"
+                          name="teamName"
+                          placeholder="Enter team name"
+                          required
+                        />
                       </div>
                     </div>
                     <div className="col-lg-6 col-md-6">
                       <div className="form-group">
                         <label htmlFor="country">Country <span className="text-danger">*</span></label>
-                        <input type="text" className="form-control" id="country" placeholder="Enter country" required />
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="country"
+                          name="country"
+                          placeholder="Enter country"
+                          required
+                        />
                       </div>
                     </div>
                     <div className="col-lg-12 col-md-12">
                       <div className="form-group">
                         <label htmlFor="competitionTopic">Select Competition Topic <span className="text-danger">*</span></label>
-                        <select className="form-control" id="competitionTopic" required>
+                        <select
+                          className="form-control"
+                          id="competitionTopic"
+                          name="competitionTopic"
+                          required
+                        >
                           <option value="">Select your topic</option>
-                          {/* Add competition topics here */}
+                          <option value="pathFollowing5to8">Path Following (5th to 8th)</option>
+                          <option value="waterBoat5to8">Water Boat (5th to 8th)</option>
+                          <option value="pathFollowing9to12">Path Following (9th to 12th)</option>
+                          <option value="mazeSolver9to12">Maze Solver (9th to 12th)</option>
+                          <option value="pathFollowing1stYearOnward">Path Following (1st Year Onward)</option>
+                          <option value="lineFollowing1stYearOnward">Line Following (1st Year Onward)</option>
+                          <option value="drone1stYearOnward">Drone (1st Year Onward)</option>
+                          <option value="smartCities">Smart Cities (Innovation)</option>
+                          <option value="healthcare">Healthcare (Innovation)</option>
+                          <option value="agricultureFoodSecurity">Agriculture and Food Security (Innovation)</option>
+                          <option value="educationLearning">Education and Learning (Innovation)</option>
+                          <option value="energySolutions">Energy Solutions (Innovation)</option>
+                          <option value="roboticsAutomation">Robotics and Automation (Innovation)</option>
+                          <option value="transportMobility">Transport and Mobility (Innovation)</option>
+                          <option value="disasterManagement">Disaster Management (Innovation)</option>
+                          <option value="communityDevelopment">Community Development (Innovation)</option>
                         </select>
                       </div>
                     </div>
@@ -75,25 +183,53 @@ const TeamRegistrationForm: React.FC = () => {
                     <div className="col-lg-6 col-md-6">
                       <div className="form-group">
                         <label htmlFor="mentorName">Name <span className="text-danger">*</span></label>
-                        <input type="text" className="form-control" id="mentorName" placeholder="Enter mentor name" required />
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="mentorName"
+                          name="mentorName"
+                          placeholder="Enter mentor name"
+                          required
+                        />
                       </div>
                     </div>
                     <div className="col-lg-6 col-md-6">
                       <div className="form-group">
                         <label htmlFor="mentorAge">Age <span className="text-danger">*</span></label>
-                        <input type="number" className="form-control" id="mentorAge" placeholder="Enter mentor age" required />
+                        <input
+                          type="number"
+                          className="form-control"
+                          id="mentorAge"
+                          name="mentorAge"
+                          placeholder="Enter mentor age"
+                          required
+                        />
                       </div>
                     </div>
                     <div className="col-lg-6 col-md-6">
                       <div className="form-group">
                         <label htmlFor="mentorEmail">Email <span className="text-danger">*</span></label>
-                        <input type="email" className="form-control" id="mentorEmail" placeholder="Enter mentor email" required />
+                        <input
+                          type="email"
+                          className="form-control"
+                          id="mentorEmail"
+                          name="mentorEmail"
+                          placeholder="Enter mentor email"
+                          required
+                        />
                       </div>
                     </div>
                     <div className="col-lg-6 col-md-6">
                       <div className="form-group">
                         <label htmlFor="mentorPhone">Phone Number <span className="text-danger">*</span></label>
-                        <input type="text" className="form-control" id="mentorPhone" placeholder="Enter mentor phone number" required />
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="mentorPhone"
+                          name="mentorPhone"
+                          placeholder="Enter mentor phone number"
+                          required
+                        />
                       </div>
                     </div>
                   </div>
@@ -101,7 +237,7 @@ const TeamRegistrationForm: React.FC = () => {
                   <h3 className="card-title text-center mt-4" style={{ backgroundColor: "#FF2D55", color: "#fff", padding: "15px", borderRadius: "5px" }}>
                     Team Details
                   </h3>
-                  {teamMembers.map((member, index) => (
+                  {members.map((member, index) => (
                     <div className="row" key={index}>
                       <div className="col-lg-6 col-md-6">
                         <div className="form-group">
@@ -110,6 +246,7 @@ const TeamRegistrationForm: React.FC = () => {
                             type="text"
                             className="form-control"
                             id={`member${index}Name`}
+                            name={`member${index}Name`}
                             placeholder={`Enter member ${index + 1} name`}
                             value={member.name}
                             onChange={(e) => handleInputChange(index, "name", e.target.value)}
@@ -124,6 +261,7 @@ const TeamRegistrationForm: React.FC = () => {
                             type="number"
                             className="form-control"
                             id={`member${index}Age`}
+                            name={`member${index}Age`}
                             placeholder={`Enter member ${index + 1} age`}
                             value={member.age}
                             onChange={(e) => handleInputChange(index, "age", e.target.value)}
@@ -138,6 +276,7 @@ const TeamRegistrationForm: React.FC = () => {
                             type="email"
                             className="form-control"
                             id={`member${index}Email`}
+                            name={`member${index}Email`}
                             placeholder={`Enter member ${index + 1} email`}
                             value={member.email}
                             onChange={(e) => handleInputChange(index, "email", e.target.value)}
@@ -152,6 +291,7 @@ const TeamRegistrationForm: React.FC = () => {
                             type="text"
                             className="form-control"
                             id={`member${index}Phone`}
+                            name={`member${index}Phone`}
                             placeholder={`Enter member ${index + 1} phone number`}
                             value={member.phone}
                             onChange={(e) => handleInputChange(index, "phone", e.target.value)}
@@ -165,6 +305,7 @@ const TeamRegistrationForm: React.FC = () => {
                             type="checkbox"
                             className="form-check-input"
                             id={`captain${index}`}
+                            name={`captain${index}`}
                             checked={member.isCaptain}
                             onChange={(e) => handleInputChange(index, "isCaptain", e.target.checked)}
                           />
@@ -173,7 +314,7 @@ const TeamRegistrationForm: React.FC = () => {
                           </label>
                         </div>
                       </div>
-                      {teamMembers.length > 2 && (
+                      {members.length > 2 && (
                         <div className="col-lg-12 col-md-12">
                           <button type="button" className="btn btn-danger mt-2" onClick={() => removeTeamMember(index)}>
                             Remove Member
@@ -183,7 +324,7 @@ const TeamRegistrationForm: React.FC = () => {
                     </div>
                   ))}
 
-                  {teamMembers.length < 5 && (
+                  {members.length < 5 && (
                     <div className="d-flex justify-content-center mt-3">
                       <button type="button" className="btn btn-secondary" onClick={addTeamMember}>
                         Add Team Member
@@ -193,7 +334,13 @@ const TeamRegistrationForm: React.FC = () => {
 
                   <div className="col-lg-12 col-md-12 mt-3">
                     <div className="form-check">
-                      <input type="checkbox" className="form-check-input" id="termsConditions" required />
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id="termsConditions"
+                        name="termsConditions"
+                        required
+                      />
                       <label className="form-check-label" htmlFor="termsConditions">
                         I agree to the terms and conditions
                       </label>
