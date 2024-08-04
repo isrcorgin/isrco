@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const token = JSON.parse(tokenString);
 
         // Make the API request with the token in the headers
-        const response = await axios.get('https://isrc-backend.onrender.com/user-profile', {
+        const response = await axios.get('https://isrc-backend-gwol.onrender.com/api/user-profile', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -75,23 +75,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await axios.post("https://isrc-backend.onrender.com/login", {
+      const response = await axios.post("https://isrc-backend-gwol.onrender.com/api/login", {
         email,
         password,
       });
       const data = response.data;
       setToken(data.token);
-      localStorage.setItem("token", JSON.stringify(data.token))
+      localStorage.setItem("token", JSON.stringify(data.token));
       router.push("/"); // Redirect to home or dashboard on successful login
     } catch (error) {
       console.error("Login error:", error);
-      // Optionally handle error
+      throw new Error("Invalid email or password");
     }
   };
+  
 
   const register = async (email: string, password: string) => {
     try {
-      const response = await axios.post("https://isrc-backend.onrender.com/register", {
+      const response = await axios.post("https://isrc-backend-gwol.onrender.com/api/register", {
         email,
         password,
       });

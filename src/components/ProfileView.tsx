@@ -5,7 +5,6 @@ import { Modal, Button, Card } from 'react-bootstrap';
 import { useRouter } from 'next/navigation';
 import QRCodeGenerator from './QRCode';
 
-
 interface Member {
   name: string;
   age: string;
@@ -35,7 +34,6 @@ interface ProfileViewProps {
 }
 
 const ProfileView: React.FC<ProfileViewProps> = ({ team, uid }) => {
- 
   const [showModal, setShowModal] = useState(false);
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
   const router = useRouter(); // Hook to navigate programmatically
@@ -48,11 +46,6 @@ const ProfileView: React.FC<ProfileViewProps> = ({ team, uid }) => {
   const handleCloseModal = () => {
     setShowModal(false);
     setSelectedMember(null);
-  };
-
-  const handleLogout = () => {
-    localStorage.clear(); // Clear all local storage data
-    router.push('/auth/login/'); // Redirect to login page or any other page
   };
 
   return (
@@ -115,7 +108,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({ team, uid }) => {
                       src="/img/isrc.png" // Update with the path to your logo
                       style={{ height: '150px', objectFit: 'contain', marginBottom: '10px' }}
                     />
-                    {member.isCaptain ?  <Card.Text className='text-center'  style={{color:"black" , fontSize:"large"}}><strong>Captain</strong></Card.Text> : <Card.Text style={{opacity: "0"}}>caption</Card.Text>}
+                    {member.isCaptain ? <Card.Text className='text-center' style={{ color: "black", fontSize: "large" }}><strong>Captain</strong></Card.Text> : <Card.Text style={{ opacity: "0" }}>caption</Card.Text>}
                     <Card.Title>{member.name}</Card.Title>
                     <Card.Text><strong>Age:</strong> {member.age}</Card.Text>
                     <Card.Text><strong>Email:</strong> {member.email}</Card.Text>
@@ -126,16 +119,18 @@ const ProfileView: React.FC<ProfileViewProps> = ({ team, uid }) => {
           </div>
 
           <h3 className="mb-4 text-center" style={{ color: '#0D1028' }}>Team QR</h3>
-          <div className="text-center mb-4" >
-            
-            <QRCodeGenerator uid={uid}/>
+          <div className="text-center mb-4">
+            <QRCodeGenerator uid={uid} />
           </div>
 
-
-          {/* Logout Button */}
+          {/* Support WhatsApp Button */}
           <div className="text-center mb-4">
-            <Button variant="danger" onClick={handleLogout}>
-              Logout
+            <Button 
+              variant="success" 
+              onClick={() => window.open('https://wa.me/919594402916', '_blank')}
+              style={{ marginBottom: '10px' }}
+            >
+              Contact Support on WhatsApp
             </Button>
           </div>
         </div>
@@ -152,12 +147,11 @@ const ProfileView: React.FC<ProfileViewProps> = ({ team, uid }) => {
               src="/img/isrc.png" // Update with the path to your logo
               style={{ height: '150px', objectFit: 'contain', marginBottom: '20px' }}
             />
-            {selectedMember.isCaptain ?  <p className='text-center' style={{fontSize: "large"}}><strong>Captain</strong></p> :  <p style={{opacity: "0"}}><strong>Captain</strong></p>}
+            {selectedMember.isCaptain ? <p className='text-center' style={{ fontSize: "large" }}><strong>Captain</strong></p> : <p style={{ opacity: "0" }}><strong>Captain</strong></p>}
             <p><strong>Name:</strong> {selectedMember.name}</p>
             <p><strong>Age:</strong> {selectedMember.age}</p>
             <p><strong>Email:</strong> {selectedMember.email}</p>
             <p><strong>Phone Number:</strong> {selectedMember.phone}</p>
-          
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleCloseModal}>

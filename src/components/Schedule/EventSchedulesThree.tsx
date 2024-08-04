@@ -28,7 +28,7 @@ const EventSchedulesThree: React.FC = () => {
             <div className="col-lg-6 d-flex justify-content-center">
               <div className="single-schedule-item">
                 <div className="schedule-date">
-                  5th to 8th
+                  5<sup className="fs-6">th</sup> to 8<sup className="fs-6">th</sup>
                   <span>Primary</span>
                 </div>
 
@@ -89,7 +89,7 @@ const EventSchedulesThree: React.FC = () => {
             <div className="col-lg-6 d-flex justify-content-center">
               <div className="single-schedule-item">
                 <div className="schedule-date">
-                  9th to 12th
+                  9<sup className="fs-6">th</sup> to 12<sup className="fs-6">th</sup>
                   <span>Secondary</span>
                 </div>
 
@@ -150,7 +150,7 @@ const EventSchedulesThree: React.FC = () => {
             <div className="col-lg-6 d-flex justify-content-center">
               <div className="single-schedule-item">
                 <div className="schedule-date">
-                  1st Year on ward
+                  1<sup className="fs-6">st</sup> Year onwards
                   <span>Higher Secondary</span>
                 </div>
 

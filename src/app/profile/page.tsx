@@ -53,7 +53,7 @@ const ProfilePage: React.FC = () => {
         const token = JSON.parse(tokenString);
 
         // Make the API request with the token in the headers
-        const response = await axios.get('https://isrc-backend.onrender.com/user-profile', {
+        const response = await axios.get('https://isrc-backend-gwol.onrender.com/api/user-profile', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

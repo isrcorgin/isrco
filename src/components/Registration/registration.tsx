@@ -1,16 +1,109 @@
 "use client";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import axios from "axios";
 import AuthContext, { AuthContextType } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+// Define the response type for the API call
+interface CheckTeamNameResponse {
+  exists: boolean;
+}
+
+// Define types for the new fields and options
+interface TopicOption {
+  value: string;
+  label: string;
+}
+
+const categoryOptions = [
+  { value: 'innovation', label: 'Innovation' },
+  { value: 'robotics', label: 'Robotics' },
+];
+
+const ageGroupOptions = [
+  { value: '5to8', label: '5th to 8th' },
+  { value: '9to12', label: '9th to 12th' },
+  { value: '1stYearOnward', label: '1st Year Onward' },
+];
+
+const topics = {
+  robotics: {
+    '5to8': [
+      { value: 'pathFollowing5to8', label: 'Path Following' },
+      { value: 'waterBoat5to8', label: 'Water Boat' },
+    ],
+    '9to12': [
+      { value: 'mazeSolver9to12', label: 'Maze Solver' },
+      { value: 'pathFollowing9to12', label: 'Path Following' },
+    ],
+    '1stYearOnward': [
+      { value: 'pathFollowing1stYearOnward', label: 'Path Following' },
+      { value: 'drone1stYearOnward', label: 'Drone' },
+      { value: 'lineFollowing1stYearOnward', label: 'Line Following' },
+    ],
+  },
+  innovation: {
+    '5to8': [
+      { value: 'communityDevelopment', label: 'Community Development' },
+      { value: 'disasterManagement', label: 'Disaster Management' },
+      { value: 'transportMobility', label: 'Transport and Mobility' },
+      { value: 'roboticsAutomation', label: 'Robotics and Automation' },
+      { value: 'energySolutions', label: 'Energy Solutions' },
+      { value: 'educationLearning', label: 'Education and Learning' },
+      { value: 'agricultureFoodSecurity', label: 'Agriculture and Food Security' },
+      { value: 'healthcare', label: 'Healthcare' },
+      { value: 'smartCities', label: 'Smart Cities' },
+    ],
+    '9to12': [
+      { value: 'communityDevelopment', label: 'Community Development' },
+      { value: 'disasterManagement', label: 'Disaster Management' },
+      { value: 'transportMobility', label: 'Transport and Mobility' },
+      { value: 'roboticsAutomation', label: 'Robotics and Automation' },
+      { value: 'energySolutions', label: 'Energy Solutions' },
+      { value: 'educationLearning', label: 'Education and Learning' },
+      { value: 'agricultureFoodSecurity', label: 'Agriculture and Food Security' },
+      { value: 'healthcare', label: 'Healthcare' },
+      { value: 'smartCities', label: 'Smart Cities' },
+    ],
+    '1stYearOnward': [
+      { value: 'community Development', label: 'Community Development' },
+      { value: 'disaster Management', label: 'Disaster Management' },
+      { value: 'transport Mobility', label: 'Transport and Mobility' },
+      { value: 'robotics Automation', label: 'Robotics and Automation' },
+      { value: 'energy Solutions', label: 'Energy Solutions' },
+      { value: 'education Learning', label: 'Education and Learning' },
+      { value: 'agriculture FoodSecurity', label: 'Agriculture and Food Security' },
+      { value: 'healthcare', label: 'Healthcare' },
+      { value: 'smartCities', label: 'Smart Cities' },
+    ],
+  },
+};
+
 const TeamRegistrationForm: React.FC = () => {
   const [token, setToken] = useState<string | null>(null);
   const [members, setMembers] = useState([
     { name: "", age: "", email: "", phone: "", isCaptain: false },
-    { name: "", age: "", email: "", phone: "", isCaptain: false }
+    { name: "", age: "", email: "", phone: "", isCaptain: false },
   ]);
+  const [teamName, setTeamName] = useState<string>('');
+  const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [selectedAgeGroup, setSelectedAgeGroup] = useState<string>('');
+  const [availableTopics, setAvailableTopics] = useState<TopicOption[]>([]);
+  const [selectedTopic, setSelectedTopic] = useState<string>('');
+  const [formDetails, setFormDetails] = useState({
+    teamName: '',
+    country: '',
+    mentorName: '',
+    mentorAge: '',
+    mentorEmail: '',
+    mentorPhone: '',
+    ageGroup: '',
+    category: '',
+    topic: '',
+  });
   const { teamTotalPrice, setTeamTotalPrice, teamRegister, setTeamRegister } = useContext(AuthContext) as AuthContextType;
   const router = useRouter();
 
@@ -27,7 +120,7 @@ const TeamRegistrationForm: React.FC = () => {
 
   useEffect(() => {
     setTeamTotalPrice(members.length * 1200);
-  }, [members]);
+  }, [members, setTeamTotalPrice]);
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -36,7 +129,6 @@ const TeamRegistrationForm: React.FC = () => {
     };
 
     window.addEventListener('storage', handleStorageChange);
-    
     return () => {
       window.removeEventListener('storage', handleStorageChange);
     };
@@ -55,6 +147,41 @@ const TeamRegistrationForm: React.FC = () => {
     }
   };
 
+  const checkTeamNameAvailability = useCallback(async (name: string) => {
+    try {
+      setLoading(true);
+
+      const token = JSON.parse(localStorage.getItem('token') || 'null');
+
+      const response = await axios.get<CheckTeamNameResponse>('https://isrc-backend-gwol.onrender.com/api/check-team-name', {
+        params: { teamName: name },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setIsAvailable(!response.data.exists);
+    } catch (error) {
+      console.error('Error checking team name:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const debouncedCheck = setTimeout(() => {
+      if (teamName) {
+        checkTeamNameAvailability(teamName);
+      }
+    }, 500);
+
+    return () => clearTimeout(debouncedCheck);
+  }, [teamName, checkTeamNameAvailability]);
+
+  const handleTeamInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTeamName(e.target.value);
+  };
+
   const handleInputChange = (index: number, field: string, value: string | boolean) => {
     const updatedMembers = members.map((member, i) =>
       i === index ? { ...member, [field]: value } : member
@@ -66,9 +193,25 @@ const TeamRegistrationForm: React.FC = () => {
     setMembers(prevMembers =>
       prevMembers.map((member, i) => ({
         ...member,
-        isCaptain: i === index // Only the selected member will be the captain
+        isCaptain: i === index,
       }))
     );
+  };
+
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selected = e.target.value;
+    setSelectedCategory(selected);
+    setAvailableTopics(selected ? topics[selected][selectedAgeGroup] || [] : []);
+  };
+
+  const handleAgeGroupChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selected = e.target.value;
+    setSelectedAgeGroup(selected);
+    setAvailableTopics(topics[selectedCategory][selected] || []);
+  };
+
+  const handleTopicChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedTopic(e.target.value);
   };
 
   const handleRegistration = async (event: React.FormEvent) => {
@@ -85,24 +228,25 @@ const TeamRegistrationForm: React.FC = () => {
     const formDetails = {
       teamName: formData.get('teamName')?.toString() || '',
       country: formData.get('country')?.toString() || '',
-      competitionTopic: formData.get('competitionTopic')?.toString() || '',
       mentorName: formData.get('mentorName')?.toString() || '',
       mentorAge: formData.get('mentorAge')?.toString() || '',
       mentorEmail: formData.get('mentorEmail')?.toString() || '',
       mentorPhone: formData.get('mentorPhone')?.toString() || '',
+      ageGroup: formData.get('ageGroup')?.toString() || '',
+      category: formData.get('category')?.toString() || '',
+      topic: formData.get('topic')?.toString() || ''
     };
 
     const teamMembers = members.map(member => ({
       name: member.name,
       age: member.age,
-      email: member.email,
       phone: member.phone,
       isCaptain: member.isCaptain,
     }));
 
     try {
       await axios.post(
-        'https://isrc-backend.onrender.com/register-team',
+        'https://isrc-backend-gwol.onrender.com/api/register-team',
         { formDetails, teamMembers },
         {
           headers: {
@@ -110,10 +254,8 @@ const TeamRegistrationForm: React.FC = () => {
           },
         }
       );
-      
-      
+
       router.push("/payment");
-      
     } catch (error) {
       console.error('Error during registration or payment:', error);
       alert('An error occurred during registration or payment. Please try again.');
@@ -127,7 +269,6 @@ const TeamRegistrationForm: React.FC = () => {
           <div className="col-lg-12 col-md-12">
             <div className="card shadow p-3 mb-5 bg-white rounded">
               <div className="card-body">
-                {/* Display login message if user is not authenticated */}
                 {!token && (
                   <div className="alert alert-warning text-center" role="alert">
                     You need to <Link href="/auth/login" className="alert-link">Sign in</Link> to register your team.
@@ -144,12 +285,20 @@ const TeamRegistrationForm: React.FC = () => {
                         <label htmlFor="teamName">Team Name <span className="text-danger">*</span></label>
                         <input
                           type="text"
-                          className="form-control"
                           id="teamName"
                           name="teamName"
-                          placeholder="Enter team name"
+                          className="form-control"
+                          value={teamName}
                           required
+                          onChange={handleTeamInputChange}
                         />
+                        {loading ? (
+                          <p>Checking availability...</p>
+                        ) : (
+                          isAvailable !== null && (
+                            <p>{isAvailable ? <span className="text-success" >Team name is available</span> : <span className="text-danger" >Team name is not available</span> }</p>
+                          )
+                        )}
                       </div>
                     </div>
                     <div className="col-lg-6 col-md-6">
@@ -165,32 +314,63 @@ const TeamRegistrationForm: React.FC = () => {
                         />
                       </div>
                     </div>
-                    <div className="col-lg-12 col-md-12">
+                    <div className="col-lg-6 col-md-6">
+                      <div className="form-group">
+                        <label htmlFor="category">Category <span className="text-danger">*</span></label>
+                        <select
+                          className="form-control"
+                          id="category"
+                          name="category"
+                          value={selectedCategory}
+                          onChange={handleCategoryChange}
+                          required
+                        >
+                          <option value="">Select Category</option>
+                          {categoryOptions.map(option => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                    <div className="col-lg-6 col-md-6">
+                      <div className="form-group">
+                        <label htmlFor="ageGroup">Age Group <span className="text-danger">*</span></label>
+                        <select
+                          className="form-control"
+                          id="ageGroup"
+                          name="ageGroup"
+                          value={selectedAgeGroup}
+                          onChange={handleAgeGroupChange}
+                          required
+                        >
+                          <option value="">Select Age Group</option>
+                          {ageGroupOptions.map(option => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                    <div className="col-lg-6 col-md-6">
                       <div className="form-group">
                         <label htmlFor="competitionTopic">Select Competition Topic <span className="text-danger">*</span></label>
                         <select
                           className="form-control"
-                          id="competitionTopic"
-                          name="competitionTopic"
+                          id="topic"
+                          name="topic"
+                          value={selectedTopic}
+                          onChange={handleTopicChange}
                           required
                         >
                           <option value="">Select your topic</option>
-                          <option value="pathFollowing5to8">Path Following (5th to 8th)</option>
-                          <option value="waterBoat5to8">Water Boat (5th to 8th)</option>
-                          <option value="pathFollowing9to12">Path Following (9th to 12th)</option>
-                          <option value="mazeSolver9to12">Maze Solver (9th to 12th)</option>
-                          <option value="pathFollowing1stYearOnward">Path Following (1st Year Onward)</option>
-                          <option value="lineFollowing1stYearOnward">Line Following (1st Year Onward)</option>
-                          <option value="drone1stYearOnward">Drone (1st Year Onward)</option>
-                          <option value="smartCities">Smart Cities (Innovation)</option>
-                          <option value="healthcare">Healthcare (Innovation)</option>
-                          <option value="agricultureFoodSecurity">Agriculture and Food Security (Innovation)</option>
-                          <option value="educationLearning">Education and Learning (Innovation)</option>
-                          <option value="energySolutions">Energy Solutions (Innovation)</option>
-                          <option value="roboticsAutomation">Robotics and Automation (Innovation)</option>
-                          <option value="transportMobility">Transport and Mobility (Innovation)</option>
-                          <option value="disasterManagement">Disaster Management (Innovation)</option>
-                          <option value="communityDevelopment">Community Development (Innovation)</option>
+                          {availableTopics.map(option => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>
@@ -291,21 +471,6 @@ const TeamRegistrationForm: React.FC = () => {
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="form-group">
-                          <label htmlFor={`member${index}Email`}>Member {index + 1} Email <span className="text-danger">*</span></label>
-                          <input
-                            type="email"
-                            className="form-control"
-                            id={`member${index}Email`}
-                            name={`member${index}Email`}
-                            placeholder={`Enter member ${index + 1} email`}
-                            value={member.email}
-                            onChange={(e) => handleInputChange(index, "email", e.target.value)}
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <div className="form-group">
                           <label htmlFor={`member${index}Phone`}>Member {index + 1} Phone Number <span className="text-danger">*</span></label>
                           <input
                             type="text"
@@ -336,7 +501,11 @@ const TeamRegistrationForm: React.FC = () => {
                       </div>
                       {members.length > 2 && (
                         <div className="col-lg-12 col-md-12">
-                          <button type="button" className="btn btn-danger mt-2" onClick={() => removeTeamMember(index)}>
+                          <button
+                            type="button"
+                            className="btn btn-danger mt-2"
+                            onClick={() => removeTeamMember(index)}
+                          >
                             Remove Member
                           </button>
                         </div>
@@ -346,7 +515,11 @@ const TeamRegistrationForm: React.FC = () => {
 
                   {members.length < 5 && (
                     <div className="d-flex justify-content-center mt-3">
-                      <button type="button" className="btn btn-secondary" onClick={addTeamMember}>
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={addTeamMember}
+                      >
                         Add Team Member
                       </button>
                     </div>
@@ -368,7 +541,11 @@ const TeamRegistrationForm: React.FC = () => {
                   </div>
 
                   <div className="d-flex justify-content-center mt-3">
-                    <button type="submit" className="btn btn-primary" style={{ backgroundColor: "#FF2D55" }}>
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      style={{ backgroundColor: "#FF2D55" }}
+                    >
                       Register and Pay ₹{teamTotalPrice}
                     </button>
                   </div>

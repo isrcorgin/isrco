@@ -1,6 +1,25 @@
+"use client"
+import axios from "axios";
 import Link from "next/link";
+import { FormEvent, useState } from "react";
+
+
 
 export default function Page() {
+
+  const [email , setEmail ] = useState("");
+
+  const handleResetPassword = async (e: React.FormEvent) => {
+    e.preventDefault()
+  try {
+    await axios.post("https://isrc-backend-gwol.onrender.com/api/forgot-password", {email})
+    alert(`Forgot Password Link has sent to the ${email} successfully`)
+
+} catch (error) {
+  alert("Error while sending Forgot Password link")
+}
+
+  }
   return (
     <>
       <div 
@@ -14,33 +33,19 @@ export default function Page() {
             <div className="login-form">
               <h3>Forgot password?</h3>
 
-              <form>
+              <form onSubmit={handleResetPassword}>
                 <div className="form-group">
                   <label>Email</label>
                   <input
                     type="email"
                     className="form-control"
                     placeholder="Email Address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
 
-                <div className="form-group">
-                  <label>Password</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Password"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Confirm Password</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Confirm Passwor"
-                  />
-                </div>
+               
 
                 <button type="submit" className="btn btn-primary">
                   Reset Password

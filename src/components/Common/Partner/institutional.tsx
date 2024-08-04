@@ -5,11 +5,11 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 
-const GoldSponsors: React.FC = () => {
+const PlatinumSponsors: React.FC = () => {
   return (
     <>
-      <div className="partner-title gold-sponsor">
-        <h3>Gold Sponsors</h3>
+      <div className="partner-title platinum-sponsor">
+        <h3>Institutional Membership</h3>
       </div>
 
       <Swiper
@@ -102,22 +102,6 @@ const GoldSponsors: React.FC = () => {
             />
           </a>
         </SwiperSlide>
-        <SwiperSlide className="partner-item">
-          <a href="#" target="_blank">
-            <Image
-              src="/images/platinum-partner4.png"
-              alt="Partner Logo"
-              width={200}
-              height={60}
-            />
-            <Image
-              src="/images/platinum-partner4.png"
-              alt="Partner Logo"
-              width={200}
-              height={60}
-            />
-          </a>
-        </SwiperSlide>
 
         <SwiperSlide className="partner-item">
           <a href="#" target="_blank">
@@ -136,9 +120,8 @@ const GoldSponsors: React.FC = () => {
           </a>
         </SwiperSlide>
       </Swiper>
-      
     </>
   );
 };
 
-export default GoldSponsors;
+export default PlatinumSponsors;

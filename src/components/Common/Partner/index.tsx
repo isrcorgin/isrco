@@ -3,7 +3,7 @@
 import React from "react"; 
 import PlatinumSponsors from "./PlatinumSponsors";
 import GoldSponsors from "./GoldSponsors";
-
+import Institute from "./institutional"
 const Partner: React.FC = () => {
   return (
     <>
@@ -15,7 +15,7 @@ const Partner: React.FC = () => {
               Our Event <b>Partner</b>
             </h2>
 
-            <a href="#" className="btn btn-primary">
+            <a href="https://wa.me/9594430295" className="btn btn-primary">
               Become a Partner
             </a>
 
@@ -27,6 +27,8 @@ const Partner: React.FC = () => {
           <div className="border"></div>
 
           <GoldSponsors />
+          <div className="border"></div>
+          <Institute />
         </div>
       </div>
     </>

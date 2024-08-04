@@ -16,7 +16,7 @@ const ContactForm: React.FC = () => {
   const handleVerify = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response: AxiosResponse<VerifyResponse> = await axios.post<VerifyResponse>("https://isrc-backend.onrender.com/verify", {
+      const response: AxiosResponse<VerifyResponse> = await axios.post<VerifyResponse>("https://isrc-backend-gwol.onrender.com/api/verify", {
         authCode
       });
       if (response.data.certificateUrl) {

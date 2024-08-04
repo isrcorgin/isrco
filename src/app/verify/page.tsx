@@ -1,6 +1,6 @@
 import Navbar from "@/components/Layouts/Navbar";
 import PageBanner from "@/components/Common/PageBanner";
-import Partner from "@/components/Verify-form/verify-form";
+import Verify from "@/components/Verify-form/verify-form";
 import Footer from "@/components/Layouts/Footer";
 
 export default function Page() {
@@ -17,7 +17,7 @@ export default function Page() {
         bgImg="/images/main-bg2.jpg"
       />
 
-      <Partner />
+      <Verify/>
 
       <Footer />
     </>

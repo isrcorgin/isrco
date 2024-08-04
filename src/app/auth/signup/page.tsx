@@ -4,17 +4,19 @@ import { AuthContextType } from "@/context/AuthContext";
 import Link from "next/link";
 import { FormEvent, useContext, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Modal } from "react-bootstrap";
+import { Modal, Spinner } from "react-bootstrap";
 
 export default function Page() {
   const { register } = useContext(AuthContext) as AuthContextType;
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false); // New state for loading
   const router = useRouter();
 
   const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true when the registration starts
     try {
       console.log(email, password);
       await register(email, password);
@@ -25,6 +27,8 @@ export default function Page() {
       if (error.message === "Email already exists") {
         setShowModal(true);
       }
+    } finally {
+      setLoading(false); // Set loading to false after the registration attempt
     }
   };
 
@@ -64,8 +68,16 @@ export default function Page() {
                   />
                 </div>
 
-                <button type="submit" className="btn btn-primary">
-                  Signup
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={loading} // Disable the button when loading
+                >
+                  {loading ? (
+                    <Spinner animation="border" size="sm" /> // Show spinner when loading
+                  ) : (
+                    "Signup"
+                  )}
                 </button>
 
                 <p>

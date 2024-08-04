@@ -31,6 +31,9 @@ const menuItems = (token: string | null) => [
   ...(!token ? [{ label: "Login", link: "/auth/login/" }] : []),
 ];
 
+
+ 
+
 // MenuItem component
 const MenuItem: React.FC<{ label: string; link: string }> = ({ label, link }) => (
   <li className="nav-item">

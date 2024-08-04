@@ -3,26 +3,26 @@
 import React from "react"; 
 
 const Subscribe: React.FC = () => {
+  const handleSupportClick = () => {
+    window.open("https://wa.me/919594402916", "_blank");
+  };
+
   return (
     <>
       <div className="subscribe-area">
         <div className="container">
           <div className="subscribe-inner">
-            <h2>Collaboration</h2>
-            <span>Join us in shaping the future of STEM education! Enter your email to explore partnership opportunities with ISRC.</span>
+            <h2>Need Support?</h2>
+            <p>If you have any questions or need assistance, please contact us via WhatsApp.</p>
 
-            <form className="newsletter-form">
-              <input
-                type="email"
-                className="form-control"
-                placeholder="Enter your email address"
-                name="EMAIL"
-                required 
-              />
-              <button className="btn btn-primary" type="submit">
-                Send
+            <div className="support-area">
+              <button
+                className="btn btn-primary" /* Using Bootstrap primary button class */
+                onClick={handleSupportClick}
+              >
+                Contact Support on WhatsApp
               </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>

@@ -13,7 +13,7 @@ const MainBanner: React.FC = () => {
     <>
       <FsLightbox
         toggler={toggler}
-        sources={["https://www.youtube.com/watch?v=O8l2nEs6a20"]}
+        sources={["https://youtu.be/1Rxq7dDlCxg"]}
       />
 
       <div 

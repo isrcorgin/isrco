@@ -111,7 +111,7 @@ const Footer: React.FC = () => {
                 <p>
                   © ISRC All Rights Reserved.{" "}
                   <a
-                    href="https://isrc.org.in"
+                    href="https://wa.me/9594402916"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

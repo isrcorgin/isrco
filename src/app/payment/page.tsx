@@ -57,7 +57,7 @@ const router = useRouter();
       const parsedToken = JSON.parse(token) as string;
 
       // Request payment details from your server
-      const { data: order } = await axios.post('https://isrc-backend.onrender.com/api/payment', { teamTotalPrice });
+      const { data: order } = await axios.post('https://isrc-backend-gwol.onrender.com/api/payment', { teamTotalPrice });
 
       // Log the order data for debugging
       console.log('Order data:', order.data);
@@ -86,7 +86,7 @@ const router = useRouter();
             }
 
             await axios.post(
-              'https://isrc-backend.onrender.com/api/verify',
+              'https://isrc-backend-gwol.onrender.com/api/verify',
               { razorpay_order_id, razorpay_payment_id, razorpay_signature },
               { headers: { 'Authorization': `Bearer ${parsedToken}` } }
             );
