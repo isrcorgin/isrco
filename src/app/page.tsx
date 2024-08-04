@@ -12,6 +12,7 @@ import LatestNews from "@/components/HomeDefault/LatestNews";
 import BuyTicket from "@/components/Common/BuyTicket";
 import Subscribe from "@/components/Common/Subscribe";
 import Footer from "@/components/Layouts/Footer";
+
 // import Footers from "@/components/Topic/Competition";
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
       {/* <WhyUs /> */}
      
       <Speakers1 />
+      
 
       {/* <EventSchedules /> */}
 

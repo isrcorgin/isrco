@@ -131,6 +131,7 @@ const ProfileView: React.FC<ProfileViewProps> = ({ team, uid }) => {
             <QRCodeGenerator uid={uid}/>
           </div>
 
+
           {/* Logout Button */}
           <div className="text-center mb-4">
             <Button variant="danger" onClick={handleLogout}>
