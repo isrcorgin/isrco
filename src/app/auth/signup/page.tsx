@@ -22,7 +22,7 @@ export default function Page() {
       setPassword("");
       setError(null); // Clear any previous error
       setSuccessMessage(message); // Set success message from the backend
-    } catch (error) {
+    } catch (error: any) {
       setError(error?.message); // Set error message
       setSuccessMessage(null); // Clear any previous success message
     } finally {

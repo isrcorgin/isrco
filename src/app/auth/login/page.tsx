@@ -28,7 +28,7 @@ export default function Page() {
       
       setEmail("");
       setPassword("");
-    } catch (error) {
+    } catch (error: any) {
       setError(error?.message); // Set error message
     }
   };
