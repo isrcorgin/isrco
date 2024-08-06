@@ -35,7 +35,7 @@ interface TeamData {
 
 interface ProfileViewProps {
   team: TeamData;
-  uid: string;
+  uid: string; 
   paymentStatus: string;
   amountDue: number;
   onCompletePayment: () => void
