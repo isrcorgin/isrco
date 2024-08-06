@@ -16,8 +16,12 @@ const menuItems = (token: string | null) => [
     link: "/about-us/",
   },
   {
-    label: "Campus Ambassador",
-    link: "/campus-ambassador/",
+    label: "Ambassador",
+    link: "#",
+    subItems: [
+      { label: "Campus Ambassador", link: "/campus-ambassador/" },
+      { label: "STEM Ambassador", link: "/stem-ambassador/" },
+    ],
   },
   {
     label: "Event",
@@ -28,23 +32,47 @@ const menuItems = (token: string | null) => [
     link: "/verify",
   },
 ];
- 
 
-// MenuItem component
-const MenuItem: React.FC<{ label: string; link: string }> = ({ label, link }) => (
-  <li className="nav-item">
-    <Link href={link} className="nav-link">
-      {label}
-    </Link>
-  </li>
-);
+
+const MenuItem: React.FC<{ label: string; link: string; subItems?: { label: string; link: string }[] }> = ({ label, link, subItems }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSubMenu = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <li className={`nav-item${subItems ? ' dropdown' : ''}`}>
+      <Link 
+        href={link} 
+        className={`nav-link${subItems ? ' dropdown-toggle' : ''}`} 
+        data-bs-toggle={subItems ? 'dropdown' : ''} 
+        onClick={subItems ? toggleSubMenu : undefined}
+      >
+        {label}
+      </Link>
+      {subItems && (
+        <ul className={`dropdown-menu${isOpen ? ' show' : ''}`} style={{ display: isOpen ? 'block' : 'none' }}>
+          {subItems.map((subItem) => (
+            <li key={subItem.label}>
+              <Link href={subItem.link} className="dropdown-item">
+                {subItem.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </li>
+  );
+};
+
 
 // Navbar component
 const Navbar: React.FC = () => {
   const [token, setToken] = useState<string | null>(null);
   const [menu, setMenu] = useState(true);
   const { teamRegister } = useContext(AuthContext) as AuthContextType;
-  
 
   // Toggle the mobile menu
   const toggleNavbar = () => {
@@ -88,7 +116,6 @@ const Navbar: React.FC = () => {
     : "navbar-toggler navbar-toggler-right";
 
   return (
-    <>
     <div id="navbar" className="elkevent-nav">
       <nav className="navbar navbar-expand-lg navbar-light" style={{ maxHeight: "90px" }}>
         <div className="container">
@@ -145,19 +172,18 @@ const Navbar: React.FC = () => {
                 )
               ) : (
                 <ul>
-                <li>
-                  <Link href="/auth/login/" className="btn btn-primary">
-                    LOGIN
-                  </Link>
-                </li>
-              </ul>
+                  <li>
+                    <Link href="/auth/login" className="btn btn-primary">
+                      Login
+                    </Link>
+                  </li>
+                </ul>
               )}
             </div>
           </div>
         </div>
       </nav>
     </div>
-  </>
   );
 };
 

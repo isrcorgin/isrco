@@ -51,7 +51,11 @@ export default function Page() {
                   {error}
                 </div>
               )}
-
+              <div className="text-center mb-4">
+                <p className="text-muted">
+                  Registration Process <Link href="/videos/registration" style={{ color: '#FF2D55', textDecoration: 'underline' }}>video</Link>
+                </p>
+              </div>
               <form onSubmit={handleLogin}>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
