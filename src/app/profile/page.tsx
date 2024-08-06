@@ -13,8 +13,8 @@ interface Member {
   name: string;
   age: string;
   email: string;
-  phone: string;
-  isCaptain: boolean;
+  phoneNumber: string;
+  captain: boolean;
 }
 
 interface Mentor {
@@ -39,7 +39,11 @@ interface TeamData {
 const ProfilePage: React.FC = () => {
   const [teamData, setTeamData] = useState<TeamData | null>(null);
 <<<<<<< HEAD
+<<<<<<< HEAD
   const [UID, setUID] = useState<string>("")
+=======
+  const [UID, setUID] = useState<string | null>("")
+>>>>>>> parent of 9f76b77 (fixed  backend changes)
   const [paymentStatus, setPaymentStatus] = useState<string>('');
   const [amountDue, setAmountDue] = useState<number>(0);
 =======
