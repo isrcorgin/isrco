@@ -29,7 +29,7 @@ export default function Page() {
       setEmail("");
       setPassword("");
     } catch (error) {
-      setError(error.message); // Set error message
+      setError(error?.message); // Set error message
     }
   };
 

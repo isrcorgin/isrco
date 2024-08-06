@@ -110,7 +110,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       return data.message; // Assumes the backend returns a message
     } catch (error) {
       console.error("Registration error:", error);
-      throw new Error(error.response?.data?.message || "Registration failed");
+      throw new Error(error?.response?.data?.message || "Registration failed");
     }
   };
 

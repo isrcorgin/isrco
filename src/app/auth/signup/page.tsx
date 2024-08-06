@@ -23,7 +23,7 @@ export default function Page() {
       setError(null); // Clear any previous error
       setSuccessMessage(message); // Set success message from the backend
     } catch (error) {
-      setError(error.message); // Set error message
+      setError(error?.message); // Set error message
       setSuccessMessage(null); // Clear any previous success message
     } finally {
       setLoading(false); // Set loading to false after the registration attempt
