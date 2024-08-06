@@ -8,6 +8,7 @@ import QRCodeGenerator from './QRCode';
 interface Member {
   name: string;
   age: string;
+  email: string;
   phone: string;
   isCaptain: boolean;
 }
@@ -24,7 +25,6 @@ interface competitionTopic {
   topic: string;
   category: string;
 }
-
 interface TeamData {
   teamName: string;
   country: string;
@@ -41,10 +41,10 @@ interface ProfileViewProps {
   onCompletePayment: () => void
 }
 
+
 const ProfileView: React.FC<ProfileViewProps> = ({ team, uid, paymentStatus, amountDue, onCompletePayment}) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
-  const router = useRouter(); // Hook to navigate programmatically
 
   const handleShowModal = (member: Member) => {
     setSelectedMember(member);

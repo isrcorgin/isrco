@@ -11,23 +11,28 @@ interface CheckTeamNameResponse {
 }
 
 // Define types for the new fields and options
+interface CheckTeamNameResponse {
+  exists: boolean;
+}
+
+// Define types for the new fields and options
 interface TopicOption {
   value: string;
   label: string;
 }
 
-const categoryOptions = [
+const categoryOptions: TopicOption[] = [
   { value: 'innovation', label: 'Innovation' },
   { value: 'robotics', label: 'Robotics' },
 ];
 
-const ageGroupOptions = [
+const ageGroupOptions: TopicOption[] = [
   { value: '5 to 8', label: '5th to 8th' },
   { value: '9 to 12', label: '9th to 12th' },
   { value: '1st Year Onwards', label: '1st Year Onwards' },
 ];
 
-const topics = {
+const topics: Record<string, Record<string, TopicOption[]>> = {
   robotics: {
     '5 to 8': [
       { value: 'Path Following 5 to 8', label: 'Path Following' },
@@ -79,7 +84,6 @@ const topics = {
     ],
   },
 };
-
 const TeamRegistrationForm: React.FC = () => {
   const [token, setToken] = useState<string | null>(null);
   const [members, setMembers] = useState([
@@ -108,7 +112,7 @@ const TeamRegistrationForm: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setTeamTotalPrice(members.length * 1200);
+    setTeamTotalPrice(members.length * 1250);
   }, [members, setTeamTotalPrice]);
 
   useEffect(() => {

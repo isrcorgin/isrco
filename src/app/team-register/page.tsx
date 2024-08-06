@@ -16,9 +16,7 @@ export default function Page() {
         activePageText="Register your Team"
         bgImg="/images/main-bg4.jpg"
       />
-
       <Register />
- 
       <Footer />
     </>
   );

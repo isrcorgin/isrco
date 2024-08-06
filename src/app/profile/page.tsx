@@ -13,28 +13,33 @@ interface Member {
   name: string;
   age: string;
   email: string;
-  phoneNumber: string;
-  captain: boolean;
+  phone: string;
+  isCaptain: boolean;
 }
 
 interface Mentor {
   name: string;
   age: string;
   email: string;
-  phoneNumber: string;
+  phone: string;
 }
 
+interface competitionTopic {
+  ageGroup: string;
+  topic: string;
+  category: string;
+}
 interface TeamData {
   teamName: string;
   country: string;
-  competitionTopic: string;
+  competitionTopic: competitionTopic;
   mentor: Mentor;
   members: Member[];
 }
 
 const ProfilePage: React.FC = () => {
   const [teamData, setTeamData] = useState<TeamData | null>(null);
-  const [UID, setUID] = useState<string | null>("")
+  const [UID, setUID] = useState<string>("")
   const [paymentStatus, setPaymentStatus] = useState<string>('');
   const [amountDue, setAmountDue] = useState<number>(0);
   const [loading, setLoading] = useState(true);

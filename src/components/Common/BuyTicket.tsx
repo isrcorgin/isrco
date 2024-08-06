@@ -19,8 +19,6 @@ const BuyTicket: React.FC = () => {
                 <div className="section-title">
                   <span>Hurry Up!</span>
                   <h2>Register Your self Now</h2>
-
-                 
                 </div>
               </div>
 

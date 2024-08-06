@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Countdown from "./Countdown";
 import AuthContext, { AuthContextType } from "@/context/AuthContext";
+import { FlagIcon } from "react-flag-kit";
 
 const MainBanner: React.FC = () => {
   const [toggler, setToggler] = useState(false);
@@ -50,13 +51,9 @@ const MainBanner: React.FC = () => {
                   <b>2</b>
                   <b>5</b>
                 </h1>
-              
-
-
-
                 <ul>
                   <li>
-                    <i className="icofont-compass"></i>Mumbai
+                    <i className="icofont-compass"></i>Mumbai <FlagIcon code="IN" size={20} />
                   </li>
                   <li>
                     <i className="icofont-calendar"></i> January, 2025

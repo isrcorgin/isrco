@@ -9,7 +9,7 @@ export default function Page() {
 
   const [email , setEmail ] = useState("");
 
-  const handleResetPassword = async (e: React.FormEvent) => {
+  const handleResetPassword = async (e: FormEvent) => {
     e.preventDefault()
   try {
     await axios.post("https://isrc-backend-gwol.onrender.com/api/forgot-password", {email})
@@ -44,9 +44,6 @@ export default function Page() {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
-
-               
-
                 <button type="submit" className="btn btn-primary">
                   Reset Password
                 </button>

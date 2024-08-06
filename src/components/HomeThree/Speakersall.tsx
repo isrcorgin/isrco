@@ -16,9 +16,8 @@ const Speakers: React.FC = () => {
       <div className="speakers-area-two ptb-120">
         <div className="container">
           <div className="section-title">
-         
             <span>Teamwork Makes the Dream Work</span>
-            <h2>Campus Ambassador <FlagIcon code="IN" size="45" /></h2>
+            <h2>Campus Ambassador <FlagIcon code="IN" size={45} /></h2>
             <div className="bar"></div>
             <div className="bg-title">Speakers</div>
             {/* <Link href="/speakers" className="btn btn-primary">

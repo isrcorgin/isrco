@@ -11,32 +11,13 @@ import Footer from "@/components/Layouts/Footer";
 export default function Home() {
   return (
     <>
-
       <Navbar />
-
       <MainBanner />
-
       <AboutUsContent />
-
-      {/* <WhyUs /> */}
-     
       <Speakers1 />
-      
-
-      {/* <EventSchedules /> */}
-
-      {/* <FunFact />
-
-      <Pricing /> */}
-
       <Partner />
-
-      {/* <LatestNews /> */}
-
       <BuyTicket />
-
       <Subscribe />
-      {/* <Footers/> */}
       <Footer />
     </>
   );

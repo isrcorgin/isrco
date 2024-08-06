@@ -13,14 +13,13 @@ const Footer: React.FC = () => {
           <div className="row">
             <div className="col-lg-6 col-md-6">
               <div className="single-footer-widget">
-             
                 <h3 className="text-danger"> <i className="icofont-google-map"></i> Venue Location</h3>
                 <span>
                   <i className="icofont-calendar " style={{ color: '#ffd700' }}></i>January, 2025
                 </span>
 
                 <p className="location">
-                  <i className="icofont-google-map text-danger"></i> Mumbai <FlagIcon code="IN" size="15" />
+                  <i className="icofont-google-map text-danger"></i> Mumbai <FlagIcon code="IN" size={15} />
                 </p>
                 <Link href="https://wa.me/919594402916" target="_blank" className="contact-authority">
                   <i className="icofont-whatsapp text-success"></i> +91 95944 02916
@@ -34,8 +33,8 @@ const Footer: React.FC = () => {
                 <p>
                 Experience ISRC 2024 in Mumbai this December! Over 4,000 teams from 15 
                 countries will compete in the International STEM and Robotics Championship,
-                 promoting hands-on learning and STEM principles. Celebrate knowledge and 
-                 innovation in this thrilling educational adventure. 🌐✨
+                promoting hands-on learning and STEM principles. Celebrate knowledge and 
+                innovation in this thrilling educational adventure. 🌐✨
                 </p>
 
                 <ul className="social-links">

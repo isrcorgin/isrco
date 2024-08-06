@@ -7,8 +7,23 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import logo from '../../../public/img/isrc-b.png';
 
-const initializeRazorpay = () => {
-  return new Promise((resolve) => {
+interface Order {
+  id: string;
+  amount: number;
+  currency: string;
+}
+interface RazorpayOrderResponse {
+  data: Order
+}
+
+interface RazorpayPaymentResponse {
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+}
+
+const initializeRazorpay = (): Promise<boolean> => {
+  return new Promise<boolean>((resolve) => {
     const script = document.createElement('script');
     script.src = 'https://checkout.razorpay.com/v1/checkout.js';
     script.onload = () => resolve(true);
@@ -16,6 +31,7 @@ const initializeRazorpay = () => {
     document.body.appendChild(script);
   });
 };
+
 
 const PaymentPage: React.FC = () => {
   const [orderId, setOrderId] = useState<string | null>(null);
@@ -46,23 +62,25 @@ const PaymentPage: React.FC = () => {
       setAmountError(null);
 
       try {
-        const { pathname } = router;
-        const isProfilePage = pathname === '/profile';
+        const token = localStorage.getItem('token');
+        if (!token) {
+          throw new Error('Token not found');
+        }
+        const parsedToken = JSON.parse(token) as string;
 
-        if (isProfilePage) {
-          const response = await axios.get('https://isrc-backend-gwol.onrender.com/api/user-profile');
-          const { amountDue } = response.data;
-          console.log('Amount due from profile:', amountDue);
+        const response = await axios.get('https://isrc-backend-gwol.onrender.com/api/user-profile', {
+          headers: {
+            Authorization: `Bearer ${parsedToken}`,
+          },
+        });
 
-          if (amountDue !== undefined) {
-            setAmount(amountDue);
-          } else {
-            throw new Error('Amount due is undefined in user profile');
-          }
-        } else if (teamTotalPrice !== null && teamTotalPrice !== undefined) {
-          setAmount(teamTotalPrice);
+        const { amountDue } = response.data.user;
+        console.log('Amount due:', amountDue);
+
+        if (amountDue !== undefined) {
+          setAmount(amountDue);
         } else {
-          throw new Error('Amount due is not defined');
+          throw new Error('Amount due is undefined');
         }
       } catch (error) {
         console.error('Error fetching amount due:', error);
@@ -73,7 +91,7 @@ const PaymentPage: React.FC = () => {
     };
 
     fetchAmountDue();
-  }, [router, teamTotalPrice]);
+  }, []);
 
   const handlePayment = async () => {
     if (!razorpayLoaded) {
@@ -94,7 +112,7 @@ const PaymentPage: React.FC = () => {
       }
       const parsedToken = JSON.parse(token) as string;
 
-      const { data: order } = await axios.post('https://isrc-backend-gwol.onrender.com/api/payment', { amount });
+      const { data: order } = await axios.post<RazorpayOrderResponse>('https://isrc-backend-gwol.onrender.com/api/payment', { amount });
       console.log('Order data:', order.data);
 
       if (!order.data.id || !order.data.amount || !order.data.currency) {
@@ -110,7 +128,7 @@ const PaymentPage: React.FC = () => {
         name: 'ISRC',
         description: 'Test Transaction',
         order_id: order.data.id,
-        handler: async (response: any) => {
+        handler: async (response: RazorpayPaymentResponse) => {
           const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = response;
           console.log('Payment response:', response);
 
@@ -124,7 +142,7 @@ const PaymentPage: React.FC = () => {
               { razorpay_order_id, razorpay_payment_id, razorpay_signature },
               { headers: { 'Authorization': `Bearer ${parsedToken}` } }
             );
-            router.push("/profile")
+            router.push("/profile");
           } catch (error) {
             console.error('Payment verification failed:', error);
             alert('Payment verification failed');

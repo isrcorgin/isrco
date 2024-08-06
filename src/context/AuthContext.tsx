@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
         }
 
-      } catch (error) {
+      } catch (error: any) {
         console.error(error);
     };
   }
@@ -89,7 +89,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         return false; // Indicate email verification is needed
       }
       
-    } catch (error) {
+    } catch (error: any) {
       throw new Error("Invalid email or password");
     }
   };
@@ -108,8 +108,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   
       // Return the message to be shown on the frontend
       return data.message; // Assumes the backend returns a message
-    } catch (error) {
-      console.error("Registration error:", error);
+    } catch (error: any) {
       throw new Error(error.response?.data?.message || "Registration failed");
     }
   };

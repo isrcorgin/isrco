@@ -4,7 +4,11 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useRef } from 'react';
 import html2canvas from 'html2canvas';
 
-const QRCodeGenerator = ({ uid }) => {
+interface QRCodeGeneratorProps {
+  uid: string; // Ensure this is properly typed
+}
+
+const QRCodeGenerator: React.FC<QRCodeGeneratorProps> = ({ uid }) => {
   const url = `https://isrc.org.in/profile/:${uid}`;
   const cardRef = useRef(null);
   const imageUrl = '../../../img/isrc-b.png'; // Replace with your image URL
