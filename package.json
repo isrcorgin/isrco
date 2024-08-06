@@ -3,7 +3,7 @@
   "version": "1.4.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3000 -H 0.0.0.0",
     "build": "next build",
     "start": "next start",
     "export": "next export",
@@ -14,6 +14,7 @@
     "axios": "^1.7.3",
     "bootstrap": "^5.3.3",
     "braces": ">=3.0.3",
+    "crypto-js": "^4.2.0",
     "framer-motion": "^11.3.21",
     "fslightbox-react": "^1.7.6",
     "html2canvas": "^1.4.1",
@@ -24,6 +25,7 @@
     "react-accessible-accordion": "^5.0.0",
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18",
+    "react-flag-kit": "^1.1.1",
     "react-tabs": "^6.0.2",
     "sass": "^1.71.1",
     "swiper": "^11.0.7"

@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 // Define the type for the Auth context
 export type AuthContextType = {
   token: string | null;
-  login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<boolean>;
+  register: (email: string, password: string) => Promise<string>;
   logout: () => void;
   teamRegister: boolean;
   setTeamRegister: (value: boolean) => void;
@@ -39,11 +39,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       try {
         // Get the token from local storage
         const tokenString = localStorage.getItem("token");
-        if (!tokenString) {
-          router.push("/")
-          return;
-        }
 
+        if(tokenString)
+        {
         // Parse the token if it is a JSON string
         const token = JSON.parse(tokenString);
 
@@ -54,6 +52,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           },
         });
 
+        
         const data = response.data;
 
         if (data.user.teamRegistered) {
@@ -64,7 +63,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           localStorage.setItem("registered", JSON.stringify(false));
           setTeamRegister(false)
         }
-      
+        }
 
       } catch (error) {
         console.error(error);
@@ -80,11 +79,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         password,
       });
       const data = response.data;
-      setToken(data.token);
-      localStorage.setItem("token", JSON.stringify(data.token));
-      router.push("/"); // Redirect to home or dashboard on successful login
+      if (data.emailVerified) {
+        // Email is verified, proceed with login
+        setToken(data.token);
+        localStorage.setItem("token", JSON.stringify(data.token));
+        return true; // Indicate successful login and email verification
+      } else {
+        // Email is not verified
+        return false; // Indicate email verification is needed
+      }
+      
     } catch (error) {
-      console.error("Login error:", error);
       throw new Error("Invalid email or password");
     }
   };
@@ -96,15 +101,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         email,
         password,
       });
-      const data = response.data;
-      console.log(data);
-      setToken(data.token);
+      const data = response.data;  
+      // Store the token and registration status
       localStorage.setItem("token", JSON.stringify(data.token));
-      localStorage.setItem("registered", JSON.stringify(true)); // Store registration status
-      router.push("/"); // Redirect to home or dashboard on successful registration
+      localStorage.setItem("registered", JSON.stringify(true));
+  
+      // Return the message to be shown on the frontend
+      return data.message; // Assumes the backend returns a message
     } catch (error) {
       console.error("Registration error:", error);
-      // Optionally handle error
+      throw new Error(error.response?.data?.message || "Registration failed");
     }
   };
 

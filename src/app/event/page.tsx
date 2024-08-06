@@ -3,6 +3,7 @@ import PageBanner from "@/components/Common/PageBanner";
 import Footer from "@/components/Layouts/Footer";
 import EventSchedulesThree from "@/components/Schedule/EventSchedulesThree";
 import EventList from "@/components/Eventlist/eventlist"
+import InnovationTopics from "@/components/Eventlist/innovation";
 export default function Page() {
   return (
     <>
@@ -18,7 +19,8 @@ export default function Page() {
       />
 
       <EventSchedulesThree />
-<EventList/>
+      <EventList/>
+      <InnovationTopics />
       <Footer />
     </>
   );

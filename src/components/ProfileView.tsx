@@ -8,7 +8,6 @@ import QRCodeGenerator from './QRCode';
 interface Member {
   name: string;
   age: string;
-  email: string;
   phone: string;
   isCaptain: boolean;
 }
@@ -20,10 +19,16 @@ interface Mentor {
   phone: string;
 }
 
+interface competitionTopic {
+  ageGroup: string;
+  topic: string;
+  category: string;
+}
+
 interface TeamData {
   teamName: string;
   country: string;
-  competitionTopic: string;
+  competitionTopic: competitionTopic;
   mentor: Mentor;
   members: Member[];
 }
@@ -31,9 +36,12 @@ interface TeamData {
 interface ProfileViewProps {
   team: TeamData;
   uid: string;
+  paymentStatus: string;
+  amountDue: number;
+  onCompletePayment: () => void
 }
 
-const ProfileView: React.FC<ProfileViewProps> = ({ team, uid }) => {
+const ProfileView: React.FC<ProfileViewProps> = ({ team, uid, paymentStatus, amountDue, onCompletePayment}) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
   const router = useRouter(); // Hook to navigate programmatically
@@ -55,8 +63,28 @@ const ProfileView: React.FC<ProfileViewProps> = ({ team, uid }) => {
           <h2 className="card-title">Team Profile</h2>
         </div>
         <div className="card-body">
+          {/* Payment Status Section */}
+          <div className="alert alert-info text-center mb-4">
+            {paymentStatus === 'pending' || paymentStatus === 'failed' ? (
+              <>
+                <span>Your payment process is pending. Please complete the payment of. </span>
+                <span
+                  onClick={onCompletePayment}
+                  style={{ marginTop: '10px', height:"50px", width:"100px", cursor: "pointer", fontSize: "16px", textDecoration: "underline", fontWeight: "600", color: "black" }}
+                  
+                >
+                Click Here to Pay {amountDue}
+                </span>
+              </>
+            ) : paymentStatus === 'completed' ? (
+              <span>Your payment is completed. Thank you!</span>
+            ) : (
+              <span>No payment status available.</span>
+            )}
+          </div>
+
           <h3 className="mb-4" style={{ color: '#0D1028' }}>General Information</h3>
-          <div className="row">
+          <div className="row justify-content-center">
             <div className="col-md-4">
               <Card className="text-center mb-4 border-0 rounded-3 shadow-sm hover-card">
                 <Card.Body>
@@ -73,16 +101,33 @@ const ProfileView: React.FC<ProfileViewProps> = ({ team, uid }) => {
                 </Card.Body>
               </Card>
             </div>
+          </div>
+          <div className='row'>
+          <div className="col-md-4">
+              <Card className="text-center mb-4 border-0 rounded-3 shadow-sm hover-card">
+                <Card.Body>
+                  <Card.Title>Age Group</Card.Title>
+                  <Card.Text>{team.competitionTopic.ageGroup}</Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
             <div className="col-md-4">
               <Card className="text-center mb-4 border-0 rounded-3 shadow-sm hover-card">
                 <Card.Body>
-                  <Card.Title>Competition Topic</Card.Title>
-                  <Card.Text>{team.competitionTopic}</Card.Text>
+                  <Card.Title>Category</Card.Title>
+                  <Card.Text>{team.competitionTopic.category}</Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
+            <div className="col-md-4">
+              <Card className="text-center mb-4 border-0 rounded-3 shadow-sm hover-card">
+                <Card.Body>
+                  <Card.Title>Topic</Card.Title>
+                  <Card.Text>{team.competitionTopic.topic}</Card.Text>
                 </Card.Body>
               </Card>
             </div>
           </div>
-
           <h3 className="mb-4" style={{ color: '#0D1028' }}>Mentor/Coach Details</h3>
           <Card className="mb-4 border-0 rounded-3 shadow-sm hover-card">
             <Card.Body>
@@ -111,18 +156,20 @@ const ProfileView: React.FC<ProfileViewProps> = ({ team, uid }) => {
                     {member.isCaptain ? <Card.Text className='text-center' style={{ color: "black", fontSize: "large" }}><strong>Captain</strong></Card.Text> : <Card.Text style={{ opacity: "0" }}>caption</Card.Text>}
                     <Card.Title>{member.name}</Card.Title>
                     <Card.Text><strong>Age:</strong> {member.age}</Card.Text>
-                    <Card.Text><strong>Email:</strong> {member.email}</Card.Text>
+                    <Card.Text><strong>Phone Number:</strong> {member.phone}</Card.Text>
                   </Card.Body>
                 </Card>
               </div>
             ))}
           </div>
-
-          <h3 className="mb-4 text-center" style={{ color: '#0D1028' }}>Team QR</h3>
-          <div className="text-center mb-4">
-            <QRCodeGenerator uid={uid} />
-          </div>
-
+          {
+            paymentStatus === "pending" || paymentStatus === "failed" ? <></> : <>
+            <h3 className="mb-4 text-center" style={{ color: '#0D1028' }}>Team QR</h3>
+                      <div className="text-center mb-4">
+                        <QRCodeGenerator uid={uid} />
+                      </div>
+            </>
+          }
           {/* Support WhatsApp Button */}
           <div className="text-center mb-4">
             <Button 
@@ -150,7 +197,6 @@ const ProfileView: React.FC<ProfileViewProps> = ({ team, uid }) => {
             {selectedMember.isCaptain ? <p className='text-center' style={{ fontSize: "large" }}><strong>Captain</strong></p> : <p style={{ opacity: "0" }}><strong>Captain</strong></p>}
             <p><strong>Name:</strong> {selectedMember.name}</p>
             <p><strong>Age:</strong> {selectedMember.age}</p>
-            <p><strong>Email:</strong> {selectedMember.email}</p>
             <p><strong>Phone Number:</strong> {selectedMember.phone}</p>
           </Modal.Body>
           <Modal.Footer>

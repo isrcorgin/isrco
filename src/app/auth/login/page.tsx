@@ -2,6 +2,7 @@
 import AuthContext from "@/context/AuthContext";
 import { AuthContextType } from "@/context/AuthContext";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useContext, useState, FormEvent } from "react";
 
 export default function Page() {
@@ -10,14 +11,23 @@ export default function Page() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null); // Add error state
+  const router = useRouter()
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await login(email, password);
+      const emailVerified = await login(email, password);
+
+      if (emailVerified) {
+        // Redirect to homepage or dashboard if email is verified
+        router.push("/team-register"); // Adjust to dashboard route
+      } else {
+        // Show error message if email is not verified
+        setError("Please verify your email to complete login.");
+      }
+      
       setEmail("");
       setPassword("");
-      setError(null); // Clear error on successful login
     } catch (error) {
       setError(error.message); // Set error message
     }
@@ -70,8 +80,12 @@ export default function Page() {
                 <button type="submit" className="btn btn-primary">
                   Login
                 </button>
-
                 <p className="mt-3">
+                  <Link href="/auth/resend-email-verification" className="btn btn-link">
+                    Resend Email Verification
+                  </Link>
+                </p>
+                <p className="mt-3" style={{display: "flex"}}>
                   <Link href="/auth/signup" className="btn btn-link">
                     Create a new account
                   </Link>

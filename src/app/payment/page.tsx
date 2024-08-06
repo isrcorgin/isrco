@@ -1,11 +1,11 @@
 "use client";
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Head from 'next/head';
 import AuthContext, { AuthContextType } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import logo from '../../../public/img/isrc-b.png'; 
+import logo from '../../../public/img/isrc-b.png';
 
 const initializeRazorpay = () => {
   return new Promise((resolve) => {
@@ -19,27 +19,61 @@ const initializeRazorpay = () => {
 
 const PaymentPage: React.FC = () => {
   const [orderId, setOrderId] = useState<string | null>(null);
-  const {teamTotalPrice} = useContext(AuthContext) as AuthContextType;
+  const [amount, setAmount] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [razorpayLoaded, setRazorpayLoaded] = useState<boolean>(false);
+  const [loadingAmount, setLoadingAmount] = useState<boolean>(true);
+  const [amountError, setAmountError] = useState<string | null>(null);
 
-const router = useRouter();
-
+  const { teamTotalPrice } = useContext(AuthContext) as AuthContextType;
+  const router = useRouter();
 
   useEffect(() => {
     const loadRazorpayScript = async () => {
       const loaded = await initializeRazorpay();
-      if (loaded) {
-        console.log('Razorpay script loaded and ready');
-        setRazorpayLoaded(true);
-      } else {
+      setRazorpayLoaded(loaded);
+      if (!loaded) {
         console.error('Failed to load Razorpay script');
-        setRazorpayLoaded(false);
       }
     };
 
     loadRazorpayScript();
   }, []);
+
+  useEffect(() => {
+    const fetchAmountDue = async () => {
+      setLoadingAmount(true);
+      setAmountError(null);
+
+      try {
+        const { pathname } = router;
+        const isProfilePage = pathname === '/profile';
+
+        if (isProfilePage) {
+          const response = await axios.get('https://isrc-backend-gwol.onrender.com/api/user-profile');
+          const { amountDue } = response.data;
+          console.log('Amount due from profile:', amountDue);
+
+          if (amountDue !== undefined) {
+            setAmount(amountDue);
+          } else {
+            throw new Error('Amount due is undefined in user profile');
+          }
+        } else if (teamTotalPrice !== null && teamTotalPrice !== undefined) {
+          setAmount(teamTotalPrice);
+        } else {
+          throw new Error('Amount due is not defined');
+        }
+      } catch (error) {
+        console.error('Error fetching amount due:', error);
+        setAmountError('Failed to fetch amount. Please try again later.');
+      } finally {
+        setLoadingAmount(false);
+      }
+    };
+
+    fetchAmountDue();
+  }, [router, teamTotalPrice]);
 
   const handlePayment = async () => {
     if (!razorpayLoaded) {
@@ -47,22 +81,22 @@ const router = useRouter();
       return;
     }
 
+    if (amount === null) {
+      alert('Amount not found');
+      return;
+    }
+
     setIsLoading(true);
     try {
-      // Fetch and parse token from localStorage
       const token = localStorage.getItem('token');
       if (!token) {
         throw new Error('Token not found');
       }
       const parsedToken = JSON.parse(token) as string;
 
-      // Request payment details from your server
-      const { data: order } = await axios.post('https://isrc-backend-gwol.onrender.com/api/payment', { teamTotalPrice });
-
-      // Log the order data for debugging
+      const { data: order } = await axios.post('https://isrc-backend-gwol.onrender.com/api/payment', { amount });
       console.log('Order data:', order.data);
 
-      // Validate order data
       if (!order.data.id || !order.data.amount || !order.data.currency) {
         throw new Error('Invalid order data');
       }
@@ -90,7 +124,7 @@ const router = useRouter();
               { razorpay_order_id, razorpay_payment_id, razorpay_signature },
               { headers: { 'Authorization': `Bearer ${parsedToken}` } }
             );
-           router.push("/profile")
+            router.push("/profile")
           } catch (error) {
             console.error('Payment verification failed:', error);
             alert('Payment verification failed');
@@ -120,6 +154,26 @@ const router = useRouter();
     }
   };
 
+  if (loadingAmount) {
+    return (
+      <div className="container d-flex justify-content-center align-items-center min-vh-100">
+        <div className="text-center">
+          <p>Loading payment information...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (amountError) {
+    return (
+      <div className="container d-flex justify-content-center align-items-center min-vh-100">
+        <div className="text-center">
+          <p className="text-danger">{amountError}</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <Head>
@@ -140,9 +194,9 @@ const router = useRouter();
               Amount (INR):
               <input
                 type="number"
-                value={teamTotalPrice}
+                value={amount !== null ? amount.toFixed(2) : 'Error'}
                 readOnly
-                className="form-control text-center" // Bootstrap text-center for centering the input text
+                className="form-control text-center"
                 style={{ fontSize: '2rem', fontWeight: '700', border: '2px solid #007bff' }}
               />
             </label>

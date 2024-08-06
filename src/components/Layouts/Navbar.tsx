@@ -27,11 +27,7 @@ const menuItems = (token: string | null) => [
     label: "Verify Certificate",
     link: "/verify",
   },
-  // Conditionally include the "Login" link based on token presence
-  ...(!token ? [{ label: "Login", link: "/auth/login/" }] : []),
 ];
-
-
  
 
 // MenuItem component
@@ -149,12 +145,12 @@ const Navbar: React.FC = () => {
                 )
               ) : (
                 <ul>
-                  <li>
-                    <Link href="/team-register" className="btn btn-primary">
-                      REGISTER
-                    </Link>
-                  </li>
-                </ul>
+                <li>
+                  <Link href="/auth/login/" className="btn btn-primary">
+                    LOGIN
+                  </Link>
+                </li>
+              </ul>
               )}
             </div>
           </div>
