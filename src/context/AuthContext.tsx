@@ -117,7 +117,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setToken(null);
     localStorage.removeItem("token");
     localStorage.removeItem("registered"); // Clear registration status
-    router.push("/login"); // Redirect to login
+    router.push("/"); // Redirect to login
   };
 
   return (

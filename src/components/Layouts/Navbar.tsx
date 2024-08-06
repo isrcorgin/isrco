@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import AuthContext, { AuthContextType } from "@/context/AuthContext";
 
+
 // Menu data
 const menuItems = (token: string | null) => [
   {
@@ -72,7 +73,7 @@ const MenuItem: React.FC<{ label: string; link: string; subItems?: { label: stri
 const Navbar: React.FC = () => {
   const [token, setToken] = useState<string | null>(null);
   const [menu, setMenu] = useState(true);
-  const { teamRegister } = useContext(AuthContext) as AuthContextType;
+  const { teamRegister, logout } = useContext(AuthContext) as AuthContextType;
 
   // Toggle the mobile menu
   const toggleNavbar = () => {
@@ -154,19 +155,30 @@ const Navbar: React.FC = () => {
             <div className="others-option">
               {token ? (
                 teamRegister ? (
-                  <ul>
+                  <ul style={{display: "flex"}}>
                     <li>
                       <Link href="/profile" className="btn btn-primary">
                         PROFILE
                       </Link>
                     </li>
+                    <li>
+                      <button onClick={logout} className="btn btn-primary">
+                        LOGOUT
+                      </button>
+                    </li>
                   </ul>
+
                 ) : (
                   <ul>
                     <li>
                       <Link href="/team-register" className="btn btn-primary">
                         REGISTER
                       </Link>
+                    </li>
+                    <li>
+                      <button href="/logout" onClick={logout} className="btn btn-primary">
+                        LOGOUT
+                      </button>
                     </li>
                   </ul>
                 )
