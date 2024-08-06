@@ -30,18 +30,11 @@ interface TeamData {
 
 interface ProfileViewProps {
   team: TeamData;
-<<<<<<< HEAD
-<<<<<<< HEAD
   uid: string; 
-=======
-  uid: string;
->>>>>>> parent of 9f76b77 (fixed  backend changes)
   paymentStatus: string;
   amountDue: number;
   onCompletePayment: () => void
-=======
-  uid: string;
->>>>>>> parent of 2a87f76 (complete backend changes)
+
 }
 
 const ProfileView: React.FC<ProfileViewProps> = ({ team, uid }) => {
