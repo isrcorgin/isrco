@@ -45,8 +45,6 @@ export default function Page() {
                   />
                 </div>
 
-               
-
                 <button type="submit" className="btn btn-primary">
                   Reset Password
                 </button>

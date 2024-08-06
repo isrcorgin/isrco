@@ -1,13 +1,18 @@
-// components/QRCodeGenerator.js
+// components/QRCodeGenerator.tsx
 import QRCode from 'qrcode.react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useRef } from 'react';
 import html2canvas from 'html2canvas';
+import Image from 'next/image';
 
-const QRCodeGenerator = ({ uid }) => {
+interface QRCodeGeneratorProps {
+  uid: string;
+}
+
+const QRCodeGenerator: React.FC<QRCodeGeneratorProps> = ({ uid }) => {
   const url = `https://isrc.org.in/profile/:${uid}`;
-  const cardRef = useRef(null);
-  const imageUrl = '../../../img/isrc-b.png'; // Replace with your image URL
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const imageUrl = '/img/isrc-b.png'; // Replace with your image URL
 
   const handleDownload = async () => {
     if (cardRef.current) {
@@ -49,16 +54,16 @@ const QRCodeGenerator = ({ uid }) => {
                     borderRadius: '8px',
                   }}
                 />
-                <img
+                <Image
                   src={imageUrl}
                   alt="Center Image"
+                  width={100}
+                  height={100}
                   style={{
                     position: 'absolute',
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
-                    width: '100px', // Adjust size as needed
-                    height: '100px',
                     borderRadius: '50%',
                   }}
                 />

@@ -3,12 +3,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Head from 'next/head';
 import AuthContext, { AuthContextType } from '@/context/AuthContext';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import logo from '../../../public/img/isrc-b.png';
 
 const initializeRazorpay = () => {
-  return new Promise((resolve) => {
+  return new Promise<boolean>((resolve) => {
     const script = document.createElement('script');
     script.src = 'https://checkout.razorpay.com/v1/checkout.js';
     script.onload = () => resolve(true);
@@ -27,6 +27,7 @@ const PaymentPage: React.FC = () => {
 
   const { teamTotalPrice } = useContext(AuthContext) as AuthContextType;
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const loadRazorpayScript = async () => {
@@ -46,7 +47,6 @@ const PaymentPage: React.FC = () => {
       setAmountError(null);
 
       try {
-        const { pathname } = router;
         const isProfilePage = pathname === '/profile';
 
         if (isProfilePage) {
@@ -73,7 +73,7 @@ const PaymentPage: React.FC = () => {
     };
 
     fetchAmountDue();
-  }, [router, teamTotalPrice]);
+  }, [pathname, teamTotalPrice]);
 
   const handlePayment = async () => {
     if (!razorpayLoaded) {

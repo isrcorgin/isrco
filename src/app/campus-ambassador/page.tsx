@@ -1,13 +1,11 @@
 import Navbar from "@/components/Layouts/Navbar";
 import PageBanner from "@/components/Common/PageBanner";
-
 import Speakers from "@/components/HomeThree/Speakersall";
-import Cta from "@/components/Common/Cta";
 import Partner from "@/components/Common/Partner";
 import BuyTicket from "@/components/Common/BuyTicket";
 import Subscribe from "@/components/Common/Subscribe";
 import Footer from "@/components/Layouts/Footer";
-import FunFact from "@/components/Common/FunFact";
+
 
 export default function Page() {
   return (
