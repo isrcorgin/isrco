@@ -22,60 +22,60 @@ const categoryOptions = [
 ];
 
 const ageGroupOptions = [
-  { value: '5 to 8', label: '5th to 8th' },
-  { value: '9 to 12', label: '9th to 12th' },
-  { value: '1st Year Onwards', label: '1st Year Onwards' },
+  { value: '5to8', label: '5th to 8th' },
+  { value: '9to12', label: '9th to 12th' },
+  { value: '1stYearOnward', label: '1st Year Onward' },
 ];
 
 const topics = {
   robotics: {
-    '5 to 8': [
-      { value: 'Path Following 5 to 8', label: 'Path Following' },
-      { value: 'Water Boat 5 to 8', label: 'Water Boat' },
+    '5to8': [
+      { value: 'pathFollowing5to8', label: 'Path Following' },
+      { value: 'waterBoat5to8', label: 'Water Boat' },
     ],
-    '9 to 12': [
-      { value: 'Maze Solver 9 to 12', label: 'Maze Solver' },
-      { value: 'Path Following 9 to 12', label: 'Path Following' },
+    '9to12': [
+      { value: 'mazeSolver9to12', label: 'Maze Solver' },
+      { value: 'pathFollowing9to12', label: 'Path Following' },
     ],
-    '1st Year Onwards': [
-      { value: 'Path Following 1st Year Onwards', label: 'Path Following' },
-      { value: 'Drone 1st Year Onwards', label: 'Drone' },
-      { value: 'Line Following 1st Year Onwards', label: 'Line Following' },
+    '1stYearOnward': [
+      { value: 'pathFollowing1stYearOnward', label: 'Path Following' },
+      { value: 'drone1stYearOnward', label: 'Drone' },
+      { value: 'lineFollowing1stYearOnward', label: 'Line Following' },
     ],
   },
   innovation: {
-    '5 to 8': [
-      { value: 'Community Development', label: 'Community Development' },
-      { value: 'Disaster Management', label: 'Disaster Management' },
-      { value: 'Transport and Mobility', label: 'Transport and Mobility' },
-      { value: 'Robotics and Automation', label: 'Robotics and Automation' },
-      { value: 'Energy Solutions', label: 'Energy Solutions' },
-      { value: 'Education and Learning', label: 'Education and Learning' },
-      { value: 'Agriculture and Food Security', label: 'Agriculture and Food Security' },
-      { value: 'Healthcare', label: 'Healthcare' },
-      { value: 'Smart Cities', label: 'Smart Cities' },
+    '5to8': [
+      { value: 'communityDevelopment', label: 'Community Development' },
+      { value: 'disasterManagement', label: 'Disaster Management' },
+      { value: 'transportMobility', label: 'Transport and Mobility' },
+      { value: 'roboticsAutomation', label: 'Robotics and Automation' },
+      { value: 'energySolutions', label: 'Energy Solutions' },
+      { value: 'educationLearning', label: 'Education and Learning' },
+      { value: 'agricultureFoodSecurity', label: 'Agriculture and Food Security' },
+      { value: 'healthcare', label: 'Healthcare' },
+      { value: 'smartCities', label: 'Smart Cities' },
     ],
-    '9 to 12': [
-      { value: 'Community Development', label: 'Community Development' },
-      { value: 'Disaster Management', label: 'Disaster Management' },
-      { value: 'Transport and Mobility', label: 'Transport and Mobility' },
-      { value: 'Robotics and Automation', label: 'Robotics and Automation' },
-      { value: 'Energy Solutions', label: 'Energy Solutions' },
-      { value: 'Education and Learning', label: 'Education and Learning' },
-      { value: 'Agriculture and Food Security', label: 'Agriculture and Food Security' },
-      { value: 'Healthcare', label: 'Healthcare' },
-      { value: 'Smart Cities', label: 'Smart Cities' },
+    '9to12': [
+      { value: 'communityDevelopment', label: 'Community Development' },
+      { value: 'disasterManagement', label: 'Disaster Management' },
+      { value: 'transportMobility', label: 'Transport and Mobility' },
+      { value: 'roboticsAutomation', label: 'Robotics and Automation' },
+      { value: 'energySolutions', label: 'Energy Solutions' },
+      { value: 'educationLearning', label: 'Education and Learning' },
+      { value: 'agricultureFoodSecurity', label: 'Agriculture and Food Security' },
+      { value: 'healthcare', label: 'Healthcare' },
+      { value: 'smartCities', label: 'Smart Cities' },
     ],
-    '1st Year Onwards': [
-      { value: 'Community Development', label: 'Community Development' },
-      { value: 'Disaster Management', label: 'Disaster Management' },
-      { value: 'Transport and Mobility', label: 'Transport and Mobility' },
-      { value: 'Robotics and Automation', label: 'Robotics and Automation' },
-      { value: 'Energy Solutions', label: 'Energy Solutions' },
-      { value: 'Education and Learning', label: 'Education and Learning' },
-      { value: 'Agriculture and Food Security', label: 'Agriculture and Food Security' },
-      { value: 'Healthcare', label: 'Healthcare' },
-      { value: 'Smart Cities', label: 'Smart Cities' },
+    '1stYearOnward': [
+      { value: 'community Development', label: 'Community Development' },
+      { value: 'disaster Management', label: 'Disaster Management' },
+      { value: 'transport Mobility', label: 'Transport and Mobility' },
+      { value: 'robotics Automation', label: 'Robotics and Automation' },
+      { value: 'energy Solutions', label: 'Energy Solutions' },
+      { value: 'education Learning', label: 'Education and Learning' },
+      { value: 'agriculture FoodSecurity', label: 'Agriculture and Food Security' },
+      { value: 'healthcare', label: 'Healthcare' },
+      { value: 'smartCities', label: 'Smart Cities' },
     ],
   },
 };
@@ -93,6 +93,17 @@ const TeamRegistrationForm: React.FC = () => {
   const [selectedAgeGroup, setSelectedAgeGroup] = useState<string>('');
   const [availableTopics, setAvailableTopics] = useState<TopicOption[]>([]);
   const [selectedTopic, setSelectedTopic] = useState<string>('');
+  const [formDetails, setFormDetails] = useState({
+    teamName: '',
+    country: '',
+    mentorName: '',
+    mentorAge: '',
+    mentorEmail: '',
+    mentorPhone: '',
+    ageGroup: '',
+    category: '',
+    topic: '',
+  });
   const { teamTotalPrice, setTeamTotalPrice, teamRegister, setTeamRegister } = useContext(AuthContext) as AuthContextType;
   const router = useRouter();
 
@@ -211,10 +222,6 @@ const TeamRegistrationForm: React.FC = () => {
       return;
     }
 
-    if(teamRegister){
-      alert('Team already registered. Please log out and try again.');
-      return;
-    }
     const form = event.currentTarget as HTMLFormElement;
     const formData = new FormData(form);
 
@@ -227,8 +234,7 @@ const TeamRegistrationForm: React.FC = () => {
       mentorPhone: formData.get('mentorPhone')?.toString() || '',
       ageGroup: formData.get('ageGroup')?.toString() || '',
       category: formData.get('category')?.toString() || '',
-      topic: formData.get('topic')?.toString() || '',
-      amountDue: teamTotalPrice
+      topic: formData.get('topic')?.toString() || ''
     };
 
     const teamMembers = members.map(member => ({

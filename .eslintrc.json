@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "extends": ["next/core-web-vitals"],
+=======
+  "extends": "next/core-web-vitals",
+>>>>>>> parent of 2a87f76 (complete backend changes)
   "rules": {
     "react/no-unescaped-entities": "off"
   }

@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FlagIcon } from 'react-flag-kit'
 import { useSpeakers } from "@/context/CampusAmbassadorContext";
 
 
@@ -15,8 +14,13 @@ const Speakers: React.FC = () => {
       <div className="speakers-area-two ptb-120">
         <div className="container">
           <div className="section-title">
+         
             <span>Teamwork Makes the Dream Work</span>
+<<<<<<< HEAD
             <h2>Campus Ambassador <FlagIcon code="IN" size={40}/> </h2>
+=======
+            <h2>Campus Ambassador (India) </h2>
+>>>>>>> parent of 2a87f76 (complete backend changes)
             <div className="bar"></div>
             <div className="bg-title">Speakers</div>
             <Link href="/campus-ambassador/" className="btn btn-primary">

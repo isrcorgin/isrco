@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FlagIcon } from "react-flag-kit";
 
 const Footer: React.FC = () => {
   return (
@@ -21,10 +20,15 @@ const Footer: React.FC = () => {
                 </span>
 
                 <p className="location">
+<<<<<<< HEAD
                   <i className="icofont-google-map text-danger"></i> Mumbai <FlagIcon code="IN" size={15} />
+=======
+                  <i className="icofont-google-map text-danger"></i> Mumbai, India
+>>>>>>> parent of 2a87f76 (complete backend changes)
                 </p>
-                <Link href="https://wa.me/919594402916" target="_blank" className="contact-authority">
-                  <i className="icofont-whatsapp text-success"></i> +91 95944 02916
+
+                <Link href="#" className="contact-authority">
+                  <i className="icofont-phone text-success"></i> +91 95944 02916
                 </Link>
               </div>
             </div>

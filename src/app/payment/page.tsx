@@ -1,11 +1,11 @@
 "use client";
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import Head from 'next/head';
 import AuthContext, { AuthContextType } from '@/context/AuthContext';
 import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
-import logo from '../../../public/img/isrc-b.png';
+import logo from '../../../public/img/isrc-b.png'; 
 
 const initializeRazorpay = () => {
   return new Promise<boolean>((resolve) => {
@@ -19,28 +19,35 @@ const initializeRazorpay = () => {
 
 const PaymentPage: React.FC = () => {
   const [orderId, setOrderId] = useState<string | null>(null);
-  const [amount, setAmount] = useState<number | null>(null);
+  const {teamTotalPrice} = useContext(AuthContext) as AuthContextType;
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [razorpayLoaded, setRazorpayLoaded] = useState<boolean>(false);
-  const [loadingAmount, setLoadingAmount] = useState<boolean>(true);
-  const [amountError, setAmountError] = useState<string | null>(null);
 
+<<<<<<< HEAD
   const { teamTotalPrice } = useContext(AuthContext) as AuthContextType;
   const router = useRouter();
   const pathname = usePathname();
+=======
+const router = useRouter();
+
+>>>>>>> parent of 2a87f76 (complete backend changes)
 
   useEffect(() => {
     const loadRazorpayScript = async () => {
       const loaded = await initializeRazorpay();
-      setRazorpayLoaded(loaded);
-      if (!loaded) {
+      if (loaded) {
+        console.log('Razorpay script loaded and ready');
+        setRazorpayLoaded(true);
+      } else {
         console.error('Failed to load Razorpay script');
+        setRazorpayLoaded(false);
       }
     };
 
     loadRazorpayScript();
   }, []);
 
+<<<<<<< HEAD
   useEffect(() => {
     const fetchAmountDue = async () => {
       setLoadingAmount(true);
@@ -75,28 +82,30 @@ const PaymentPage: React.FC = () => {
     fetchAmountDue();
   }, [pathname, teamTotalPrice]);
 
+=======
+>>>>>>> parent of 2a87f76 (complete backend changes)
   const handlePayment = async () => {
     if (!razorpayLoaded) {
       alert('Razorpay script not loaded yet');
       return;
     }
 
-    if (amount === null) {
-      alert('Amount not found');
-      return;
-    }
-
     setIsLoading(true);
     try {
+      // Fetch and parse token from localStorage
       const token = localStorage.getItem('token');
       if (!token) {
         throw new Error('Token not found');
       }
       const parsedToken = JSON.parse(token) as string;
 
-      const { data: order } = await axios.post('https://isrc-backend-gwol.onrender.com/api/payment', { amount });
+      // Request payment details from your server
+      const { data: order } = await axios.post('https://isrc-backend-gwol.onrender.com/api/payment', { teamTotalPrice });
+
+      // Log the order data for debugging
       console.log('Order data:', order.data);
 
+      // Validate order data
       if (!order.data.id || !order.data.amount || !order.data.currency) {
         throw new Error('Invalid order data');
       }
@@ -124,7 +133,7 @@ const PaymentPage: React.FC = () => {
               { razorpay_order_id, razorpay_payment_id, razorpay_signature },
               { headers: { 'Authorization': `Bearer ${parsedToken}` } }
             );
-            router.push("/profile")
+           router.push("/profile")
           } catch (error) {
             console.error('Payment verification failed:', error);
             alert('Payment verification failed');
@@ -154,26 +163,6 @@ const PaymentPage: React.FC = () => {
     }
   };
 
-  if (loadingAmount) {
-    return (
-      <div className="container d-flex justify-content-center align-items-center min-vh-100">
-        <div className="text-center">
-          <p>Loading payment information...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (amountError) {
-    return (
-      <div className="container d-flex justify-content-center align-items-center min-vh-100">
-        <div className="text-center">
-          <p className="text-danger">{amountError}</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
       <Head>
@@ -194,9 +183,9 @@ const PaymentPage: React.FC = () => {
               Amount (INR):
               <input
                 type="number"
-                value={amount !== null ? amount.toFixed(2) : 'Error'}
+                value={teamTotalPrice}
                 readOnly
-                className="form-control text-center"
+                className="form-control text-center" // Bootstrap text-center for centering the input text
                 style={{ fontSize: '2rem', fontWeight: '700', border: '2px solid #007bff' }}
               />
             </label>

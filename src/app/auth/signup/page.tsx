@@ -1,30 +1,40 @@
-"use client";
+"use client"
 import AuthContext from "@/context/AuthContext";
 import { AuthContextType } from "@/context/AuthContext";
 import Link from "next/link";
 import { FormEvent, useContext, useState } from "react";
-import { Spinner } from "react-bootstrap";
+import { useRouter } from "next/navigation";
+import { Modal, Spinner } from "react-bootstrap";
 
 export default function Page() {
   const { register } = useContext(AuthContext) as AuthContextType;
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string | null>(null); // Add error state
-  const [successMessage, setSuccessMessage] = useState<string | null>(null); // Add success message state
+  const [showModal, setShowModal] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false); // New state for loading
+  const router = useRouter();
 
   const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true); // Set loading to true when the registration starts
     try {
-      const message = await register(email, password); // Call the updated register function
+      console.log(email, password);
+      await register(email, password);
       setEmail("");
       setPassword("");
+<<<<<<< HEAD
       setError(null); // Clear any previous error
       setSuccessMessage(message); // Set success message from the backend
     } catch (error: any) {
       setError(error?.message); // Set error message
       setSuccessMessage(null); // Clear any previous success message
+=======
+      router.push("/team-register");
+    } catch (error) {
+      if (error.message === "Email already exists") {
+        setShowModal(true);
+      }
+>>>>>>> parent of 2a87f76 (complete backend changes)
     } finally {
       setLoading(false); // Set loading to false after the registration attempt
     }
@@ -42,16 +52,7 @@ export default function Page() {
           <div className="d-table-cell">
             <div className="signup-form">
               <h3>Create your Account</h3>
-              {error && (
-                <div className="alert alert-danger" role="alert">
-                  {error}
-                </div>
-              )}
-              {successMessage && (
-                <div className="alert alert-success" role="alert">
-                  {successMessage}
-                </div>
-              )}
+
               <form onSubmit={handleRegister}>
                 <div className="form-group">
                   <label>Email</label>
@@ -95,6 +96,25 @@ export default function Page() {
           </div>
         </div>
       </div>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Email Already Exists</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          The email address you entered is already associated with an account.
+          Please use a different email or login with your existing account.
+        </Modal.Body>
+        <Modal.Footer>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => setShowModal(false)}
+          >
+            Close
+          </button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

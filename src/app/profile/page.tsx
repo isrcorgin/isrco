@@ -38,9 +38,13 @@ interface TeamData {
 
 const ProfilePage: React.FC = () => {
   const [teamData, setTeamData] = useState<TeamData | null>(null);
+<<<<<<< HEAD
   const [UID, setUID] = useState<string>("")
   const [paymentStatus, setPaymentStatus] = useState<string>('');
   const [amountDue, setAmountDue] = useState<number>(0);
+=======
+  const [UID, setUID] = useState<string | null>("")
+>>>>>>> parent of 2a87f76 (complete backend changes)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter()
@@ -73,10 +77,7 @@ const ProfilePage: React.FC = () => {
         }
 
         setTeamData(data.user.team);
-        setUID(data.user.uid);
-        setPaymentStatus(data.user.paymentStatus);
-        setAmountDue(data.user.amountDue)
-
+        setUID(data.user.uid)
       } catch (error) {
         setError('Failed to fetch data');
       } finally {
@@ -86,13 +87,6 @@ const ProfilePage: React.FC = () => {
 
     fetchData();
   }, []);
-
-
-  const handleCompletePayment = () => {
-    if (amountDue > 0) {
-      router.push(`/payment`);
-    }
-  };
 
   if (loading) return <Loading/>;
   if (error) return <div>{error}</div>;
@@ -111,7 +105,7 @@ const ProfilePage: React.FC = () => {
       />
 
       <div className="container mt-5">
-        {teamData ? <ProfileView team={teamData} uid={UID} paymentStatus={paymentStatus} amountDue={amountDue} onCompletePayment={handleCompletePayment}  /> : <div>No team data available</div>}
+        {teamData ? <ProfileView team={teamData} uid={UID} /> : <div>No team data available</div>}
       </div>
       <br /><br />
       <Footer />
