@@ -375,7 +375,7 @@ const TeamRegistrationForm: React.FC = () => {
                   </div>
 
                   <h3 className="card-title text-center mt-4" style={{ backgroundColor: "#FF2D55", color: "#fff", padding: "15px", borderRadius: "5px" }}>
-                    Mentor/Coach Details
+                    Mentor/Professor/Teacher Details
                   </h3>
                   <div className="row">
                     <div className="col-lg-6 col-md-6">

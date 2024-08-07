@@ -56,7 +56,7 @@ const InnovationTopics = () => {
       </Head>
       <div className="container my-5">
         <div className="row">
-        <h2 className='text-center'>Innovation Topics</h2>
+        <h2 className='text-center'>Approved Innovation Themes</h2>
           <div className="col-md-12">
             <div className="card outer-card shadow-sm">
               <div className="card-body">

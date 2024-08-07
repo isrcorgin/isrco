@@ -1,10 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Modal, Button } from 'react-bootstrap'; // Import Bootstrap components
 
 const EventSchedulesThree: React.FC = () => {
+  const [showPdf, setShowPdf] = useState<boolean>(false);
+  const [pdfSrc, setPdfSrc] = useState<string>('');
+
+  // Handle showing the PDF
+  const handleShowPdf = (pdfUrl: string) => {
+    setPdfSrc(pdfUrl);
+    setShowPdf(true);
+  };
+
+  const handleClose = () => {
+    setShowPdf(false);
+    setPdfSrc('');
+  };
+
   return (
     <>
       <div className="schedule-area schedule-style-three bg-image ptb-120">
@@ -47,8 +62,13 @@ const EventSchedulesThree: React.FC = () => {
                     <div className="schedule-info">
                       <h3>
                         <Link href="#">Water Boat</Link>
+                        <p
+                          onClick={() => handleShowPdf('/rules/r-1.pdf')}
+                          style={{ cursor: 'pointer', color: 'grey', textDecoration: 'underline' }}
+                        >
+                          Rules & Regulations
+                        </p>
                       </h3>
-
                       <ul>
                         <li>
                           The <Link href="#">Water Boat</Link> competition involves designing and building a boat that can navigate through water. Teams must consider factors like buoyancy, propulsion, and stability to create an effective watercraft.
@@ -72,11 +92,16 @@ const EventSchedulesThree: React.FC = () => {
                       <div className="schedule-info">
                         <h3>
                           <Link href="#">Path Following</Link>
+                          <p
+                          onClick={() => handleShowPdf('/rules/r-1.pdf')}
+                          style={{ cursor: 'pointer', color: 'grey', textDecoration: 'underline' }}
+                        >
+                          Rules & Regulations
+                        </p>
                         </h3>
-
                         <ul>
                           <li>
-                          Young participants create simple robots to move along a designated <Link href="#">path</Link> using basic light or touch sensors. This fun activity introduces children to robotics basics. It helps develop their problem-solving skills.
+                            Young participants create simple robots to move along a designated <Link href="#">path</Link> using basic light or touch sensors. This fun activity introduces children to robotics basics. It helps develop their problem-solving skills.
                           </li>
                         </ul>
                       </div>
@@ -108,6 +133,12 @@ const EventSchedulesThree: React.FC = () => {
                     <div className="schedule-info">
                       <h3>
                         <Link href="#">Maze Solver</Link>
+                        <p
+                          onClick={() => handleShowPdf('/rules/r-1.pdf')}
+                          style={{ cursor: 'pointer', color: 'grey', textDecoration: 'underline' }}
+                        >
+                          Rules & Regulations
+                        </p>
                       </h3>
 
                       <ul>
@@ -133,11 +164,16 @@ const EventSchedulesThree: React.FC = () => {
                       <div className="schedule-info">
                         <h3>
                           <Link href="#">Path Following</Link>
+                          <p
+                          onClick={() => handleShowPdf('/rules/r-1.pdf')}
+                          style={{ cursor: 'pointer', color: 'grey', textDecoration: 'underline' }}
+                        >
+                          Rules & Regulations
+                        </p>
                         </h3>
-
                         <ul>
                           <li>
-                          Participants build <Link href="#">Robots</Link> to navigate a specific route using advanced sensors like infrared or ultrasonic. They fine-tune their robots for higher accuracy with more complex programming. This challenge enhances their understanding of robotics principles.
+                            Participants build <Link href="#">Robots</Link> to navigate a specific route using advanced sensors like infrared or ultrasonic. They fine-tune their robots for higher accuracy with more complex programming. This challenge enhances their understanding of robotics principles.
                           </li>
                         </ul>
                       </div>
@@ -169,8 +205,13 @@ const EventSchedulesThree: React.FC = () => {
                     <div className="schedule-info">
                       <h3>
                         <Link href="#">Line Following</Link>
+                        <p
+                          onClick={() => handleShowPdf('/rules/r-1.pdf')}
+                          style={{ cursor: 'pointer', color: 'grey', textDecoration: 'underline' }}
+                        >
+                          Rules & Regulations
+                        </p>
                       </h3>
-
                       <ul>
                         <li>
                           The <Link href="#">Line Following</Link> competition requires robots to follow a line on the ground. The robot must stay on the track and navigate turns, demonstrating its ability to respond to changes in the environment.
@@ -193,6 +234,12 @@ const EventSchedulesThree: React.FC = () => {
                       <div className="schedule-info">
                         <h3>
                           <Link href="#">Drone</Link>
+                          <p
+                          onClick={() => handleShowPdf('/rules/r-1.pdf')}
+                          style={{ cursor: 'pointer', color: 'grey', textDecoration: 'underline' }}
+                        >
+                          Rules & Regulations
+                        </p>
                         </h3>
 
                         <ul>
@@ -217,11 +264,17 @@ const EventSchedulesThree: React.FC = () => {
                         <div className="schedule-info">
                           <h3>
                             <Link href="#">Path Following</Link>
+                            <p
+                          onClick={() => handleShowPdf('/rules/r-2.pdf')}
+                          style={{ cursor: 'pointer', color: 'grey', textDecoration: 'underline' }}
+                        >
+                          Rules & Regulations
+                          </p>
                           </h3>
 
                           <ul>
                             <li>
-                            Participants engineer sophisticated robots to follow intricate <Link href="#">path</Link> using cutting-edge sensors like LIDAR and advanced algorithms like PID control. This competition allows them to apply theoretical knowledge in practical scenarios. It pushes the boundaries of their technical skills.
+                              Participants engineer sophisticated robots to follow intricate <Link href="#">path</Link> using cutting-edge sensors like LIDAR and advanced algorithms like PID control. This competition allows them to apply theoretical knowledge in practical scenarios. It pushes the boundaries of their technical skills.
                             </li>
                           </ul>
                         </div>
@@ -272,6 +325,21 @@ const EventSchedulesThree: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Bootstrap Modal for PDF */}
+      <Modal show={showPdf} onHide={handleClose} size="lg" centered>
+        <Modal.Header closeButton>
+          <Modal.Title>PDF Viewer</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <embed
+            src={pdfSrc}
+            type="application/pdf"
+            width="100%"
+            height="800px"
+          />
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

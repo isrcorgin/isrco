@@ -176,7 +176,7 @@ const Navbar: React.FC = () => {
                       </Link>
                     </li>
                     <li>
-                      <button href="/logout" onClick={logout} className="btn btn-primary">
+                      <button onClick={logout} className="btn btn-primary">
                         LOGOUT
                       </button>
                     </li>
