@@ -10,12 +10,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-pdf-viewer/core": "^3.12.0",
-    "@react-pdf-viewer/default-layout": "^3.12.0",
-    "@react-pdf-viewer/page-navigation": "^3.12.0",
-    "@react-pdf-viewer/thumbnail": "^3.12.0",
-    "@react-pdf-viewer/toolbar": "^3.12.0",
-    "@react-pdf-viewer/zoom": "^3.12.0",
     "@types/fslightbox-react": "^1.7.7",
     "axios": "^1.7.3",
     "bootstrap": "^5.3.3",
