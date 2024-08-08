@@ -29,6 +29,10 @@ const menuItems = (token: string | null) => [
     link: "/event/",
   },
   {
+    label: "Blog",
+    link: "/blog/",
+  },
+  {
     label: "Verify Certificate",
     link: "/verify",
   },
